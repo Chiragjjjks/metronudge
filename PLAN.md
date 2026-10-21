@@ -118,6 +118,10 @@ The app supports a per-user **Fare mode** setting: `qr_ticket` (default) | `ncmc
 | `ui` | Onboarding, home screen, station picker, settings, history, permissions help. |
 
 ### 5.2 Location strategy
+
+> **Owner decision (2026-10-21), implemented in v0.1:** check location **every 5 minutes**, nudge when **walking towards** a station and **within 150 m**. Because a 5-minute step (~400 m walking) can jump straight past a 150 m zone, the watcher speeds up to **every 1 minute within ~1.2 km** of a station. It runs as a *location foreground service* (ongoing "Watching" notification) using the framework `LocationManager`, which needs only "while using the app" location, with no background-location permission and no Play services. Trade-off vs. geofencing: slightly more battery while near stations, and the user must switch watching on in the app after a reboot. Geofencing (below) remains the long-term option.
+
+#### Original geofencing plan
 - **Geofences, not 5-minute polling.** Background polling drains battery, is throttled on Android, and is not reliably possible on iOS.
 - **Radius ~150 m** (configurable 100–300 m). 10–20 m is not achievable reliably; urban GPS error is 10–50 m and the user needs time to tap and pay.
 - Fence centre = station entrance(s) where known, else station centroid. Multiple entrances → multiple fences sharing one station ID.
@@ -257,14 +261,14 @@ metronudge/
 
 ### M2 — Onboarding, settings, station picker (no location yet)
 - [ ] Onboarding flow (4.4) minus permission prompts.
-- [ ] Home station + preferred channel saved locally.
-- [ ] Station picker with search (English + Kannada), favourites, recents.
+- [x] Home station saved locally.
+- [x] Station picker with search (English + Kannada) and recents. (Favourites: later.)
 - **Done when:** settings persist across restarts.
 
 ### M3 — Notifications + hand-off
-- [ ] `notification_service` with actions Buy / Change destination / Not now.
-- [ ] TripCard screen opened from every notification tap.
-- [ ] `handoff_service` launching the Namma Metro-BMRCL official app with store fallback (+ copy destination to clipboard).
+- [x] Nudge notification with actions Buy / Not now (change destination is on the trip card).
+- [x] TripCard screen opened from every notification tap.
+- [x] Hand-off finds the Namma Metro app by name (no package id needed), copies the destination, store fallback.
 
 > ⚠️ The original plan text was cut off here. M3 "done when", M4, M5 and the
 > "Open questions" section are still to be supplied by the owner.
