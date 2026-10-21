@@ -17,6 +17,9 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -37,11 +40,13 @@ fun PickerScreen(
 ) {
     val c = Mn.colors
     var query by remember { mutableStateOf("") }
+    val focus = remember { FocusRequester() }
+    LaunchedEffect(Unit) { focus.requestFocus() }
     val q = query.trim().lowercase()
     val results = remember(q) {
         pack.stations
             .filter { q.isEmpty() || it.name.lowercase().contains(q) || shortName(it).lowercase().contains(q) || (it.nameKn?.contains(q) == true) }
-            .sortedWith(compareBy({ !it.name.lowercase().startsWith(q) }, { it.name }))
+            .sortedWith(compareBy({ !it.name.lowercase().startsWith(q) }, { it.name.lowercase() }))
     }
     Column(Modifier.fillMaxSize().background(c.background).statusBarsPadding().navigationBarsPadding().imePadding()) {
         Column(Modifier.screenPadding()) {
@@ -55,7 +60,7 @@ fun PickerScreen(
                 placeholder = { Text("Search 83 stations · English or ಕನ್ನಡ") },
                 singleLine = true,
                 shape = ButtonShape,
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth().focusRequester(focus),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = c.foreground,
                     unfocusedBorderColor = c.border,

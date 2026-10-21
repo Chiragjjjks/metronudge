@@ -9,6 +9,7 @@ import android.content.pm.ServiceInfo
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
+import android.location.LocationRequest
 import android.os.Build
 import android.os.IBinder
 import android.os.Looper
@@ -18,6 +19,7 @@ import io.github.chiragjjjks.metronudge.core.LatLng
 import io.github.chiragjjjks.metronudge.core.TripPlanner
 import io.github.chiragjjjks.metronudge.data.Store
 import io.github.chiragjjjks.metronudge.data.WatchStatus
+import io.github.chiragjjjks.metronudge.ui.shortName
 
 /**
  * Checks your location every 5 minutes (every minute when you're within
@@ -33,6 +35,7 @@ class WatchService : Service(), LocationListener {
     private lateinit var lm: LocationManager
     private var previous: Fix? = null
     private var intervalMillis = 0L
+    private var precision = false
 
     override fun onBind(intent: Intent?): IBinder? = null
 
@@ -70,24 +73,34 @@ class WatchService : Service(), LocationListener {
         return START_NOT_STICKY
     }
 
-    private fun provider(): String =
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && lm.hasProvider(LocationManager.FUSED_PROVIDER)) {
-            LocationManager.FUSED_PROVIDER
-        } else if (lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-            LocationManager.GPS_PROVIDER
-        } else {
-            LocationManager.NETWORK_PROVIDER
-        }
-
+    /**
+     * Far from stations: battery-friendly "balanced" fixes every 5 minutes.
+     * Near a station (and for the very first fix): GPS-quality fixes every
+     * minute, because Wi-Fi/cell fixes are often 100 m+ off, too coarse for a
+     * 150 m zone.
+     */
     @Suppress("MissingPermission") // checked in onStartCommand
     private fun requestUpdates(interval: Long) {
-        if (interval == intervalMillis) return
+        val precise = previous == null || interval < 5 * 60_000L
+        if (interval == intervalMillis && precise == precision) return
         intervalMillis = interval
+        precision = precise
         lm.removeUpdates(this)
-        lm.requestLocationUpdates(provider(), interval, 0f, this, Looper.getMainLooper())
-        // Get a first answer quickly instead of waiting a full interval.
-        if (previous == null) {
-            lm.getLastKnownLocation(provider())?.let { if (System.currentTimeMillis() - it.time < 2 * 60_000) onLocationChanged(it) }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && lm.hasProvider(LocationManager.FUSED_PROVIDER)) {
+            val request = LocationRequest.Builder(interval)
+                .setQuality(if (precise) LocationRequest.QUALITY_HIGH_ACCURACY else LocationRequest.QUALITY_BALANCED_POWER_ACCURACY)
+                .setMinUpdateIntervalMillis(interval / 2)
+                .build()
+            lm.requestLocationUpdates(LocationManager.FUSED_PROVIDER, request, mainExecutor, this)
+        } else {
+            val provider = if (precise && lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                LocationManager.GPS_PROVIDER
+            } else if (lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+                LocationManager.NETWORK_PROVIDER
+            } else {
+                LocationManager.GPS_PROVIDER
+            }
+            lm.requestLocationUpdates(provider, interval, 0f, this, Looper.getMainLooper())
         }
     }
 
@@ -111,7 +124,7 @@ class WatchService : Service(), LocationListener {
         }
 
         val every = if (decision.nextCheckMillis < 5 * 60_000L) "every minute" else "every 5 minutes"
-        val text = "${decision.station.name}: ${decision.distanceMeters.toInt()} m · checking $every"
+        val text = "${shortName(decision.station)}: ${decision.distanceMeters.toInt()} m · checking $every"
         getSystemService(android.app.NotificationManager::class.java)
             .notify(Notifier.ID_WATCH, Notifier.watchNotification(this, text))
 

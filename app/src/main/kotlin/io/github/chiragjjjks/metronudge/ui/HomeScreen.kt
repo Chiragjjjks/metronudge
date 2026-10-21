@@ -122,7 +122,7 @@ fun HomeScreen(
                         else -> "Not moving"
                     }
                     Text(
-                        "$trend · checked ${DateUtils.getRelativeTimeSpanString(status.checkedAtMillis)}",
+                        "$trend · checked ${checkedAgo(status.checkedAtMillis)}",
                         style = T.bodyMedium,
                         color = c.mutedForeground,
                     )
@@ -212,5 +212,9 @@ private fun TicketCard(pack: CityPack, ticket: Ticket, onOpen: () -> Unit) {
         }
     }
 }
+
+private fun checkedAgo(at: Long): String =
+    if (System.currentTimeMillis() - at < 60_000) "just now"
+    else DateUtils.getRelativeTimeSpanString(at).toString()
 
 fun formatDistance(m: Int): String = if (m < 1000) "$m m" else "%.1f km".format(m / 1000.0)

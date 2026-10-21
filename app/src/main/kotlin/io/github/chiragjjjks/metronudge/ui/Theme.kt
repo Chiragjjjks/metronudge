@@ -96,7 +96,12 @@ fun MetroNudgeTheme(content: @Composable () -> Unit) {
         outline = p.border,
         outlineVariant = p.border,
     )
-    androidx.compose.runtime.CompositionLocalProvider(LocalPalette provides p) {
-        MaterialTheme(colorScheme = scheme, typography = type, content = content)
+    MaterialTheme(colorScheme = scheme, typography = type) {
+        // Default text colour follows the theme (otherwise plain Text is black in dark mode).
+        androidx.compose.runtime.CompositionLocalProvider(
+            LocalPalette provides p,
+            androidx.compose.material3.LocalContentColor provides p.foreground,
+            content = content,
+        )
     }
 }

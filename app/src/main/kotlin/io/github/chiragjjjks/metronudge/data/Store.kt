@@ -136,11 +136,15 @@ class Store private constructor(private val context: Context) {
         ticket = null
     }
 
-    /** Emits whenever any stored value changes, so the UI can refresh. */
-    fun changes(): Flow<Unit> = callbackFlow {
-        val l = SharedPreferences.OnSharedPreferenceChangeListener { _, _ -> trySend(Unit) }
+    /**
+     * Emits an increasing counter whenever any stored value changes, so the UI
+     * can refresh. (A counter, not Unit: state flows drop equal values.)
+     */
+    fun changes(): Flow<Long> = callbackFlow {
+        var n = 0L
+        val l = SharedPreferences.OnSharedPreferenceChangeListener { _, _ -> trySend(++n) }
         prefs.registerOnSharedPreferenceChangeListener(l)
-        trySend(Unit)
+        trySend(n)
         awaitClose { prefs.unregisterOnSharedPreferenceChangeListener(l) }
     }
 

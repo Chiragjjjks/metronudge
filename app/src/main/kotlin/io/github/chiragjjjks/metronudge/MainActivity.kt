@@ -46,8 +46,20 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         Notifier.createChannels(this)
-        incoming.value = intent
+        // Only on a fresh start: after rotation/theme change the same intent
+        // would otherwise be handled again.
+        if (savedInstanceState == null) incoming.value = intent
         setContent { MetroNudgeTheme { App() } }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // Android may have killed the watcher (reboot, app update, low memory).
+        // If it's meant to be on, restart it now that we're in the foreground.
+        val store = Store.get(this)
+        if (store.watching) {
+            if (WatchService.hasLocationPermission(this)) WatchService.start(this) else store.watching = false
+        }
     }
 
     override fun onNewIntent(intent: Intent) {
@@ -60,7 +72,7 @@ class MainActivity : ComponentActivity() {
         val store = remember { Store.get(this) }
         val pack = store.pack
         // Re-read state whenever prefs change (the watcher writes from the service).
-        val tick by remember { store.changes() }.collectAsState(Unit)
+        val tick by remember { store.changes() }.collectAsState(0L)
         var stack by remember { mutableStateOf(listOf<Screen>(Screen.Home)) }
         var lastTrip by remember { mutableStateOf<Trip?>(null) }
         val screen = stack.last()
@@ -189,14 +201,16 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun sharedImage(intent: Intent): Uri? =
-        if (Build.VERSION.SDK_INT >= 33) intent.getParcelableExtra(Intent.EXTRA_STREAM, Uri::class.java)
-        else @Suppress("DEPRECATION") intent.getParcelableExtra(Intent.EXTRA_STREAM)
+        intent.clipData?.takeIf { it.itemCount > 0 }?.getItemAt(0)?.uri
+            ?: if (Build.VERSION.SDK_INT >= 33) intent.getParcelableExtra(Intent.EXTRA_STREAM, Uri::class.java)
+            else @Suppress("DEPRECATION") intent.getParcelableExtra(Intent.EXTRA_STREAM)
 
     private fun importTicket(store: Store, uri: Uri, trip: Trip?) {
         try {
             store.importTicket(uri, trip?.source?.id, trip?.destination?.id)
             Toast.makeText(this, "Ticket saved for today", Toast.LENGTH_SHORT).show()
         } catch (e: Exception) {
+            android.util.Log.w("MetroNudge", "Ticket import failed", e)
             Toast.makeText(this, "Couldn't read that image", Toast.LENGTH_LONG).show()
         }
     }
