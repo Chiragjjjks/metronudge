@@ -4,7 +4,7 @@ An open-source, on-device app that notices you are approaching a metro station
 and gets your ticket ready before you reach the gate.
 
 - **First city:** Bengaluru (Namma Metro)
-- **Platforms:** Android first, then iOS (Flutter)
+- **Platforms:** Android first (Kotlin + Jetpack Compose), iOS later
 - **Licence:** Apache-2.0
 
 > Status: early development. See [PLAN.md](PLAN.md) for the full plan and milestones.
@@ -35,15 +35,23 @@ endorsed by BMRCL (Bangalore Metro Rail Corporation Ltd).
 Station data © [OpenStreetMap contributors](https://www.openstreetmap.org/copyright),
 available under the [ODbL](https://opendatacommons.org/licenses/odbl/).
 
+## Install
+
+Download `MetroNudge.apk` from the
+[latest release](../../releases/latest/download/MetroNudge.apk) and open it on
+your phone (allow "install unknown apps" for your browser once).
+
 ## Development
 
-The Flutter app lives in [`app/`](app/).
+Native Android: Kotlin, Jetpack Compose and Material 3. You don't need anything
+installed locally — GitHub Actions runs the tests, builds the APK and publishes
+it as a release on every push to `main`.
+
+To build locally instead, install JDK 17 and the Android SDK (Platform 37,
+build-tools 36), then:
 
 ```sh
-cd app
-flutter pub get
-flutter analyze
-flutter test
+./gradlew testDebugUnitTest lintDebug assembleRelease
 ```
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).

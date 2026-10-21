@@ -17,14 +17,12 @@ Thanks for helping! A few ground rules keep the project true to its goals.
 2. Fork, branch from `main`, and keep PRs small and focused.
 3. Use [Conventional Commits](https://www.conventionalcommits.org/):
    `feat:`, `fix:`, `docs:`, `chore:`, `test:`, `refactor:`.
-4. Before pushing:
+4. Before pushing (or let CI do it):
    ```sh
-   cd app
-   dart format .
-   flutter analyze
-   flutter test
+   ./gradlew testDebugUnitTest lintDebug assembleRelease
    ```
-5. CI must be green before review.
+5. CI must be green before review. Keep the APK small: justify every new
+   dependency in the PR description.
 
 ## Adding a city
 

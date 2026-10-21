@@ -14,6 +14,13 @@ __pycache__/
 *.jks
 *.keystore
 key.properties
-app/android/wallet.properties
-app/android/local.properties
+wallet.properties
 .env
+
+# Gradle / Android
+.gradle/
+build/
+local.properties
+*.apk
+*.aab
+captures/

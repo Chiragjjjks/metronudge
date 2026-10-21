@@ -164,19 +164,26 @@ Goal: open MetroNudge (or its widget) at the gate and see today's QR immediately
 
 ## 6. Tech stack
 
-- **Flutter (Dart)** — single codebase for Android + iOS.
-- **UI: shadcn style.** Use the Flutter port of shadcn/ui (`shadcn_ui` by nank1ro, now also published as `shad`; or `shadcn_flutter` as alternative). **VERIFY** which is best maintained today and pick one. Use **Dribbble** only for visual inspiration (search "metro ticket app", "transit pass UI", "boarding pass"); do not copy designs. Design goals: dark + light themes, one huge QR screen, TripCard with large tap targets usable while walking, Namma Metro line colours as accents (no BMRCL logo).
-- **Geofencing plugin** — evaluate options that wrap the *native* OS geofencing APIs (not a foreground-service polling loop). **VERIFY** maintenance status and iOS/Android support before choosing; if none is solid, write a thin platform channel (Kotlin `GeofencingClient` + Swift `CLLocationManager`).
-- `flutter_local_notifications` — actionable notifications. **VERIFY** current API.
-- `url_launcher` — deep links.
-- Local storage: `sqflite` or `drift` (history) + `shared_preferences` (settings). Pick one approach and stay consistent.
-- Map (optional, later): `flutter_map` with OpenStreetMap tiles — tiles are the only network fetch and must be clearly disclosed. App must fully work without the map.
-- State management: Riverpod (or keep it simple with provider) — agent's choice, document it.
+**Owner decision (2026-10-21): no Flutter or other cross-platform framework.** Same approach as [shashankanil/step-counter](https://github.com/shashankanil/step-counter): native Android, built entirely in GitHub Actions, APK downloaded from GitHub Releases. Nothing to install on the owner's laptop. Target APK size: a few MB (hard ceiling 10 MB).
+
+- **Android: Kotlin + Jetpack Compose + Material 3.** AGP 9.1.1 (built-in Kotlin), Kotlin Compose plugin 2.2.10, Gradle 9.3.1 wrapper, compileSdk/targetSdk 37, minSdk 26. Release builds use R8 minification + resource shrinking.
+- **Build in CI.** `.github/workflows/ci.yml` runs unit tests, lint and `assembleRelease` on every push/PR. Every push to `main` publishes a GitHub Release, so the newest APK is always at `releases/latest/download/MetroNudge.apk`. Optional signing secrets give a stable key so new builds install over old ones.
+- **Dependencies, minimal and justified one by one** (no Room, no WorkManager, no Hilt, no networking libs):
+  - UI: Compose BOM + Material 3 + `activity-compose`.
+  - JSON: `org.json` (built into Android).
+  - Storage: `SharedPreferences` for settings; a small JSON file for history/tickets.
+  - Notifications: framework `NotificationManager` with action buttons.
+  - Hand-off: framework `Intent`s (`getLaunchIntentForPackage`, Play Store fallback).
+  - Geofencing (M4): `play-services-location` `GeofencingClient`, the battery-efficient OS geofencer.
+  - QR decode/encode (ticket wallet, later): **VERIFY** at that milestone; prefer a small library (e.g. ZXing core) over ML Kit to keep size down.
+- **No `INTERNET` permission** in the manifest; this makes the privacy promise verifiable.
+- **iOS: later, native Swift/SwiftUI**, sharing only the `data/` JSON. Not started until Android is in daily use.
+- UI style: dark + light (follows system, Material You colours on Android 12+), one huge QR screen, TripCard with large tap targets usable while walking, Namma Metro line colours as accents (no BMRCL logo).
 
 ## 7. Station data
 
 - Source: **OpenStreetMap** (via an Overpass query), licensed **ODbL** — attribute in app About screen and README.
-- `tools/fetch_stations.py` (or `.dart`) regenerates `data/cities/bengaluru.json` from Overpass. Not run at app runtime.
+- `tools/fetch_stations.py` regenerates `data/cities/bengaluru.json` from Overpass. Not run at app runtime.
 - Schema (draft):
 
 ```json
@@ -213,48 +220,39 @@ Goal: open MetroNudge (or its widget) at the gate and see today's QR immediately
 
 ```
 metronudge/
-├── app/                      # Flutter app
-│   ├── lib/
-│   │   ├── core/             # city_pack, station_resolver, trip_planner
-│   │   ├── platform/         # region_manager, geofence_handler, notifications, handoff
-│   │   ├── data/             # local_store
-│   │   └── ui/               # screens + widgets
-│   ├── android/
-│   ├── ios/
-│   └── test/
-├── data/
+├── app/                       # Android app (Kotlin + Compose)
+│   ├── build.gradle.kts
+│   └── src/
+│       ├── main/kotlin/io/github/<owner>/metronudge/
+│       │   ├── core/          # CityPack, StationResolver, TripPlanner (pure Kotlin, unit-tested)
+│       │   ├── platform/      # geofencing, notifications, hand-off
+│       │   ├── data/          # local store
+│       │   └── ui/            # activities + views
+│       └── test/              # JVM unit tests
+├── data/                      # bundled into the APK as assets
 │   ├── cities/bengaluru.json
 │   └── channels/bengaluru.json
-├── tools/fetch_stations.py
+├── tools/fetch_stations.py    # regenerates station data from OSM (dev only)
 ├── docs/
-│   ├── architecture.md
-│   ├── privacy.md
-│   ├── adding-a-city.md
-│   └── play-store-background-location.md
-├── .github/
-│   ├── workflows/ci.yml       # analyze + test on PR
-│   ├── workflows/release.yml  # build APK on tag, attach to GitHub Release
-│   ├── ISSUE_TEMPLATE/
-│   └── PULL_REQUEST_TEMPLATE.md
-├── README.md
-├── CONTRIBUTING.md
-├── CODE_OF_CONDUCT.md
-├── LICENSE                    # Apache-2.0
-└── PLAN.md                    # this file
+├── .github/workflows/ci.yml   # test + lint + build; push to main → GitHub Release
+├── gradlew, gradle/wrapper/   # Gradle 9.3.1 wrapper
+├── settings.gradle.kts, build.gradle.kts
+├── README.md, CONTRIBUTING.md, CODE_OF_CONDUCT.md, LICENSE
+└── PLAN.md
 ```
 
 ## 10. Milestones
 
 ### M0 — Repo bootstrap
-- [ ] `git init`, add LICENSE (Apache-2.0), README skeleton, CONTRIBUTING, CODE_OF_CONDUCT, `.gitignore` for Flutter.
-- [ ] Create Flutter project in `app/` (org id placeholder `io.github.OWNER.metronudge` — replace when owner gives GitHub ID).
-- [ ] CI workflow: `flutter analyze` + `flutter test` on push/PR.
-- **Done when:** CI is green on an empty app.
+- [x] `git init`, add LICENSE (Apache-2.0), README skeleton, CONTRIBUTING, CODE_OF_CONDUCT, `.gitignore`.
+- [x] Native Android (Kotlin + Compose) project in `app/` (application id placeholder `io.github.owner.metronudge` — replace when owner gives GitHub ID).
+- [x] CI workflow: unit tests + lint + release build on push/PR; each push to `main` publishes the APK as a GitHub Release.
+- **Done when:** CI is green on GitHub (pending first push).
 
 ### M1 — Station data
 - [ ] Overpass fetch script → `data/cities/bengaluru.json`.
-- [ ] `city_pack` loader + validation tests.
-- [ ] `station_resolver` with nearest-station lookup + tests.
+- [x] `CityPack` loader + validation tests.
+- [x] `StationResolver` with nearest-station lookup + tests.
 - **Done when:** tests pass; every station has valid coordinates.
 
 ### M2 — Onboarding, settings, station picker (no location yet)
