@@ -21,11 +21,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import io.github.owner.metronudge.core.CityPack
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        val pack = CityPack.parse(assets.open("cities/bengaluru.json").bufferedReader().use { it.readText() })
         setContent {
             MetroNudgeTheme {
                 Scaffold { padding ->
@@ -35,7 +37,7 @@ class MainActivity : ComponentActivity() {
                         horizontalAlignment = Alignment.CenterHorizontally,
                     ) {
                         Text("MetroNudge", style = MaterialTheme.typography.headlineMedium)
-                        Text("Namma Metro, one tap away")
+                        Text("${pack.system}: ${pack.stations.size} stations")
                     }
                 }
             }

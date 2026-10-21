@@ -1,0 +1,2276 @@
+{
+  "city": "bengaluru",
+  "system": "Namma Metro",
+  "version": "2026-10-21",
+  "source": "OpenStreetMap contributors (ODbL)",
+  "bbox": {
+    "south": 12.7,
+    "west": 77.3,
+    "north": 13.3,
+    "east": 77.9
+  },
+  "lines": [
+    {
+      "id": "green",
+      "name": "Green Line",
+      "color": "#009933"
+    },
+    {
+      "id": "purple",
+      "name": "Purple Line",
+      "color": "#E542DE"
+    },
+    {
+      "id": "yellow",
+      "name": "Yellow Line",
+      "color": "#F2C200"
+    }
+  ],
+  "stations": [
+    {
+      "id": "attiguppe",
+      "name": "Attiguppe",
+      "name_kn": "ಅತ್ತಿಗುಪ್ಪೆ",
+      "lines": [
+        "purple"
+      ],
+      "lat": 12.961893,
+      "lng": 77.533579,
+      "entrances": [
+        {
+          "lat": 12.962461,
+          "lng": 77.534046,
+          "label": "A"
+        },
+        {
+          "lat": 12.962026,
+          "lng": 77.533911,
+          "label": "B"
+        },
+        {
+          "lat": 12.961698,
+          "lng": 77.533424,
+          "label": "C"
+        }
+      ],
+      "osm": "node/6400857563"
+    },
+    {
+      "id": "baiyappanahalli",
+      "name": "Baiyappanahalli",
+      "name_kn": "ಬೈಯ್ಯಪ್ಪನಹಳ್ಳಿ",
+      "lines": [
+        "purple"
+      ],
+      "lat": 12.990759,
+      "lng": 77.652361,
+      "entrances": [
+        {
+          "lat": 12.991778,
+          "lng": 77.652513
+        },
+        {
+          "lat": 12.992153,
+          "lng": 77.652085
+        },
+        {
+          "lat": 12.989758,
+          "lng": 77.653524,
+          "label": "A"
+        }
+      ],
+      "osm": "node/6400857549"
+    },
+    {
+      "id": "banashankari",
+      "name": "Banashankari",
+      "name_kn": "ಬನಶಂಕರಿ",
+      "lines": [
+        "green"
+      ],
+      "lat": 12.915221,
+      "lng": 77.573598,
+      "entrances": [
+        {
+          "lat": 12.91618,
+          "lng": 77.573967,
+          "label": "A"
+        },
+        {
+          "lat": 12.915609,
+          "lng": 77.573875,
+          "label": "B"
+        },
+        {
+          "lat": 12.91644,
+          "lng": 77.573433,
+          "label": "D"
+        }
+      ],
+      "osm": "node/6432710294"
+    },
+    {
+      "id": "benniganahalli",
+      "name": "Benniganahalli",
+      "name_kn": "ಬೆನ್ನಿಗಾನಹಳ್ಳಿ",
+      "lines": [
+        "purple"
+      ],
+      "lat": 12.996516,
+      "lng": 77.668462,
+      "entrances": [
+        {
+          "lat": 12.997278,
+          "lng": 77.6689,
+          "label": "A"
+        },
+        {
+          "lat": 12.996125,
+          "lng": 77.668614,
+          "label": "B"
+        }
+      ],
+      "osm": "node/5760197766"
+    },
+    {
+      "id": "beratena-agrahara",
+      "name": "Beratena Agrahara",
+      "name_kn": "ಬೆರಟೇನ ಅಗ್ರಹಾರ",
+      "lines": [
+        "yellow"
+      ],
+      "lat": 12.863878,
+      "lng": 77.657904,
+      "entrances": [
+        {
+          "lat": 12.863379,
+          "lng": 77.658308
+        },
+        {
+          "lat": 12.863764,
+          "lng": 77.657768
+        }
+      ],
+      "osm": "node/5760198153"
+    },
+    {
+      "id": "biocon-hebbagodi",
+      "name": "Biocon Hebbagodi",
+      "name_kn": "ಬಯೋಕಾನ್ ಹೆಬ್ಬಗೋಡಿ",
+      "lines": [
+        "yellow"
+      ],
+      "lat": 12.829033,
+      "lng": 77.681374,
+      "entrances": [
+        {
+          "lat": 12.828918,
+          "lng": 77.681202
+        }
+      ],
+      "osm": "node/11521199307"
+    },
+    {
+      "id": "bommanahalli",
+      "name": "Bommanahalli",
+      "name_kn": "ಬೊಮ್ಮನಹಳ್ಳಿ",
+      "lines": [
+        "yellow"
+      ],
+      "lat": 12.910616,
+      "lng": 77.626478,
+      "entrances": [
+        {
+          "lat": 12.910621,
+          "lng": 77.626266,
+          "label": "A"
+        }
+      ],
+      "osm": "node/5760198202"
+    },
+    {
+      "id": "btm-layout",
+      "name": "BTM Layout",
+      "name_kn": "ಬಿಟಿಎಂ ಬಡಾವಣೆ",
+      "lines": [
+        "yellow"
+      ],
+      "lat": 12.916588,
+      "lng": 77.608118,
+      "entrances": [
+        {
+          "lat": 12.916367,
+          "lng": 77.6082,
+          "label": "A"
+        },
+        {
+          "lat": 12.916792,
+          "lng": 77.608214,
+          "label": "B"
+        }
+      ],
+      "osm": "node/5760198226"
+    },
+    {
+      "id": "central-silk-board",
+      "name": "Central Silk Board",
+      "name_kn": "ಸೆಂಟ್ರಲ್ ಸಿಲ್ಕ ಬೋರ್ಡ್",
+      "lines": [
+        "yellow"
+      ],
+      "lat": 12.916582,
+      "lng": 77.620567,
+      "entrances": [
+        {
+          "lat": 12.916218,
+          "lng": 77.61996,
+          "label": "A"
+        },
+        {
+          "lat": 12.916578,
+          "lng": 77.621108,
+          "label": "B"
+        },
+        {
+          "lat": 12.916803,
+          "lng": 77.621073,
+          "label": "C"
+        }
+      ],
+      "osm": "node/5760198212"
+    },
+    {
+      "id": "challaghatta",
+      "name": "Challaghatta",
+      "name_kn": "ಚಲ್ಲಘಟ್ಟ",
+      "lines": [
+        "purple"
+      ],
+      "lat": 12.897354,
+      "lng": 77.461288,
+      "entrances": [
+        {
+          "lat": 12.897362,
+          "lng": 77.461464,
+          "label": "A"
+        },
+        {
+          "lat": 12.897529,
+          "lng": 77.461286,
+          "label": "B"
+        }
+      ],
+      "osm": "node/9919570131"
+    },
+    {
+      "id": "chickpete",
+      "name": "Chickpete",
+      "name_kn": "ಚಿಕ್ಕಪೇಟೆ",
+      "lines": [
+        "green"
+      ],
+      "lat": 12.966897,
+      "lng": 77.574557,
+      "entrances": [
+        {
+          "lat": 12.967666,
+          "lng": 77.574684,
+          "label": "A"
+        },
+        {
+          "lat": 12.965938,
+          "lng": 77.574873,
+          "label": "B"
+        },
+        {
+          "lat": 12.966619,
+          "lng": 77.574149,
+          "label": "C"
+        },
+        {
+          "lat": 12.96746,
+          "lng": 77.57466,
+          "label": "D"
+        }
+      ],
+      "osm": "node/6432710301"
+    },
+    {
+      "id": "chikkabidarakallu",
+      "name": "Chikkabidarakallu",
+      "name_kn": "ಚಿಕ್ಕಬಿದರಕಲ್ಲು",
+      "lines": [
+        "green"
+      ],
+      "lat": 13.052362,
+      "lng": 77.487915,
+      "entrances": [],
+      "osm": "node/1576973954"
+    },
+    {
+      "id": "cubbon-park",
+      "name": "Cubbon Park",
+      "name_kn": "ಕಬ್ಬನ್ ಪಾರ್ಕ್",
+      "lines": [
+        "purple"
+      ],
+      "lat": 12.980958,
+      "lng": 77.597576,
+      "entrances": [
+        {
+          "lat": 12.980761,
+          "lng": 77.598364,
+          "label": "A"
+        },
+        {
+          "lat": 12.980257,
+          "lng": 77.597952,
+          "label": "B"
+        },
+        {
+          "lat": 12.980964,
+          "lng": 77.596946,
+          "label": "C"
+        },
+        {
+          "lat": 12.981082,
+          "lng": 77.596564,
+          "label": "D"
+        },
+        {
+          "lat": 12.981751,
+          "lng": 77.596439,
+          "label": "E"
+        },
+        {
+          "lat": 12.981375,
+          "lng": 77.596321,
+          "label": "F"
+        },
+        {
+          "lat": 12.981329,
+          "lng": 77.597244,
+          "label": "G"
+        }
+      ],
+      "osm": "node/6400857555"
+    },
+    {
+      "id": "dasarahalli",
+      "name": "Dasarahalli",
+      "name_kn": "ದಾಸರಹಳ್ಳಿ",
+      "lines": [
+        "green"
+      ],
+      "lat": 13.043261,
+      "lng": 77.512553,
+      "entrances": [
+        {
+          "lat": 13.043594,
+          "lng": 77.512109,
+          "label": "A"
+        },
+        {
+          "lat": 13.043348,
+          "lng": 77.512879,
+          "label": "B"
+        }
+      ],
+      "osm": "node/5960788724"
+    },
+    {
+      "id": "deepanjali-nagar",
+      "name": "Deepanjali Nagar",
+      "name_kn": "ದೀಪಾಂಜಲಿ ನಗರ",
+      "lines": [
+        "purple"
+      ],
+      "lat": 12.952058,
+      "lng": 77.537012,
+      "entrances": [
+        {
+          "lat": 12.952015,
+          "lng": 77.537293,
+          "label": "A"
+        },
+        {
+          "lat": 12.952194,
+          "lng": 77.536817,
+          "label": "B"
+        }
+      ],
+      "osm": "node/6400857564"
+    },
+    {
+      "id": "delta-electronics-bommasandra",
+      "name": "Delta Electronics Bommasandra",
+      "name_kn": "ಡೆಲ್ಟಾ ಎಲೆಕ್ಟ್ರಾನಿಕ್ಸ್ ಬೊಮ್ಮಸಂದ್ರ",
+      "lines": [
+        "yellow"
+      ],
+      "lat": 12.819394,
+      "lng": 77.688345,
+      "entrances": [
+        {
+          "lat": 12.819263,
+          "lng": 77.688172,
+          "label": "A"
+        },
+        {
+          "lat": 12.819427,
+          "lng": 77.688348,
+          "label": "A"
+        }
+      ],
+      "osm": "node/5760197806"
+    },
+    {
+      "id": "doddakallasandra",
+      "name": "Doddakallasandra",
+      "name_kn": "ದೊಡ್ಡಕಲ್ಲಸಂದ್ರ",
+      "lines": [
+        "green"
+      ],
+      "lat": 12.884643,
+      "lng": 77.552755,
+      "entrances": [
+        {
+          "lat": 12.884466,
+          "lng": 77.552831,
+          "label": "A"
+        },
+        {
+          "lat": 12.884816,
+          "lng": 77.552691,
+          "label": "B"
+        }
+      ],
+      "osm": "node/9919651776"
+    },
+    {
+      "id": "dr-b-r-ambedkar-station-vidhana-soudha",
+      "name": "Dr. B. R. Ambedkar Station, Vidhana Soudha",
+      "name_kn": "ಡಾ.ಬಿ.ಆರ್. ಅಂಬೇಡ್ಕರ್ ಠಾಣೆ, ವಿಧಾನಸೌಧ",
+      "lines": [
+        "purple"
+      ],
+      "lat": 12.978742,
+      "lng": 77.591639,
+      "entrances": [
+        {
+          "lat": 12.980113,
+          "lng": 77.592634,
+          "label": "A"
+        },
+        {
+          "lat": 12.979424,
+          "lng": 77.592572,
+          "label": "B"
+        },
+        {
+          "lat": 12.979185,
+          "lng": 77.592349,
+          "label": "C"
+        },
+        {
+          "lat": 12.977627,
+          "lng": 77.591005,
+          "label": "D"
+        },
+        {
+          "lat": 12.97766,
+          "lng": 77.590276,
+          "label": "E"
+        }
+      ],
+      "osm": "node/6400857556"
+    },
+    {
+      "id": "electronic-city",
+      "name": "Electronic City",
+      "name_kn": "ಎಲೆಕ್ಟ್ರಾನಿಕ್ ಸಿಟಿ",
+      "lines": [
+        "yellow"
+      ],
+      "lat": 12.856505,
+      "lng": 77.663523,
+      "entrances": [
+        {
+          "lat": 12.856402,
+          "lng": 77.663418,
+          "label": "A"
+        },
+        {
+          "lat": 12.855714,
+          "lng": 77.66417,
+          "label": "B"
+        },
+        {
+          "lat": 12.855999,
+          "lng": 77.663903,
+          "label": "B"
+        }
+      ],
+      "osm": "node/5760198145"
+    },
+    {
+      "id": "garudacharpalya",
+      "name": "Garudacharpalya",
+      "name_kn": "ಗರುಡಾಚಾರ್ ಪಾಳ್ಯ",
+      "lines": [
+        "purple"
+      ],
+      "lat": 12.99345,
+      "lng": 77.703677,
+      "entrances": [
+        {
+          "lat": 12.99355,
+          "lng": 77.703886,
+          "label": "A"
+        },
+        {
+          "lat": 12.993212,
+          "lng": 77.703761,
+          "label": "B"
+        }
+      ],
+      "osm": "node/5760197762"
+    },
+    {
+      "id": "goraguntepalya",
+      "name": "Goraguntepalya",
+      "name_kn": "ಗೊರಗುಂಟೆಪಾಳ್ಯ",
+      "lines": [
+        "green"
+      ],
+      "lat": 13.028332,
+      "lng": 77.540848,
+      "entrances": [
+        {
+          "lat": 13.027895,
+          "lng": 77.541153,
+          "label": "A"
+        },
+        {
+          "lat": 13.02806,
+          "lng": 77.540894,
+          "label": "B"
+        },
+        {
+          "lat": 13.02839,
+          "lng": 77.540309,
+          "label": "C"
+        },
+        {
+          "lat": 13.028338,
+          "lng": 77.541442,
+          "label": "E"
+        }
+      ],
+      "osm": "way/1353733806"
+    },
+    {
+      "id": "halasuru",
+      "name": "Halasuru",
+      "name_kn": "ಹಲಸೂರು",
+      "lines": [
+        "purple"
+      ],
+      "lat": 12.976499,
+      "lng": 77.626686,
+      "entrances": [
+        {
+          "lat": 12.976206,
+          "lng": 77.626334
+        }
+      ],
+      "osm": "node/6400857552"
+    },
+    {
+      "id": "hongasandra",
+      "name": "Hongasandra",
+      "name_kn": "ಹೊಂಗಸಂದ್ರ",
+      "lines": [
+        "yellow"
+      ],
+      "lat": 12.901695,
+      "lng": 77.631986,
+      "entrances": [
+        {
+          "lat": 12.901599,
+          "lng": 77.631851
+        },
+        {
+          "lat": 12.902143,
+          "lng": 77.631537
+        }
+      ],
+      "osm": "node/5760198198"
+    },
+    {
+      "id": "hoodi",
+      "name": "Hoodi",
+      "name_kn": "ಹೂಡಿ",
+      "lines": [
+        "purple"
+      ],
+      "lat": 12.988803,
+      "lng": 77.711326,
+      "entrances": [
+        {
+          "lat": 12.988693,
+          "lng": 77.711497,
+          "label": "A"
+        },
+        {
+          "lat": 12.98894,
+          "lng": 77.711241,
+          "label": "B"
+        }
+      ],
+      "osm": "node/5760197761"
+    },
+    {
+      "id": "hopefarm-channasandra",
+      "name": "Hopefarm Channasandra",
+      "name_kn": "ಹೋಪ್ ಫಾರ್ಮ್ ಚನ್ನಸಂದ್ರ",
+      "lines": [
+        "purple"
+      ],
+      "lat": 12.987297,
+      "lng": 77.753884,
+      "entrances": [
+        {
+          "lat": 12.987327,
+          "lng": 77.753704,
+          "label": "A"
+        },
+        {
+          "lat": 12.987211,
+          "lng": 77.754049,
+          "label": "B"
+        }
+      ],
+      "osm": "node/5760197745"
+    },
+    {
+      "id": "hosa-road",
+      "name": "Hosa Road",
+      "name_kn": "ಹೊಸ ರಸ್ತೆ",
+      "lines": [
+        "yellow"
+      ],
+      "lat": 12.870749,
+      "lng": 77.652447,
+      "entrances": [
+        {
+          "lat": 12.870232,
+          "lng": 77.652718
+        },
+        {
+          "lat": 12.870684,
+          "lng": 77.652286
+        }
+      ],
+      "osm": "node/5760198162"
+    },
+    {
+      "id": "huskur-road",
+      "name": "Huskur Road",
+      "name_kn": "ಹುಸ್ಕೂರು ರಸ್ತೆ",
+      "lines": [
+        "yellow"
+      ],
+      "lat": 12.839157,
+      "lng": 77.677372,
+      "entrances": [
+        {
+          "lat": 12.838309,
+          "lng": 77.677806,
+          "label": "A"
+        },
+        {
+          "lat": 12.839149,
+          "lng": 77.677937,
+          "label": "B"
+        }
+      ],
+      "osm": "node/5760198122"
+    },
+    {
+      "id": "indiranagar",
+      "name": "Indiranagar",
+      "name_kn": "ಇಂದಿರಾನಗರ",
+      "lines": [
+        "purple"
+      ],
+      "lat": 12.978333,
+      "lng": 77.638661,
+      "entrances": [
+        {
+          "lat": 12.978429,
+          "lng": 77.638449,
+          "label": "A"
+        },
+        {
+          "lat": 12.978203,
+          "lng": 77.639253,
+          "label": "B"
+        },
+        {
+          "lat": 12.978147,
+          "lng": 77.638941,
+          "label": "C"
+        }
+      ],
+      "osm": "node/6400857551"
+    },
+    {
+      "id": "infosys-foundation-konappana-agrahara",
+      "name": "Infosys Foundation Konappana Agrahara",
+      "name_kn": "ಇನ್ಫೋಸಿಸ್ ಫೌಂಡೇಶನ್ ಕೊನಪ್ಪನ ಅಗ್ರಹಾರ",
+      "lines": [
+        "yellow"
+      ],
+      "lat": 12.84644,
+      "lng": 77.671187,
+      "entrances": [
+        {
+          "lat": 12.846799,
+          "lng": 77.670789,
+          "label": "A"
+        },
+        {
+          "lat": 12.845857,
+          "lng": 77.671398,
+          "label": "B"
+        },
+        {
+          "lat": 12.847013,
+          "lng": 77.670899,
+          "label": "C"
+        },
+        {
+          "lat": 12.847905,
+          "lng": 77.671178,
+          "label": "E"
+        }
+      ],
+      "osm": "node/5760198133"
+    },
+    {
+      "id": "jalahalli",
+      "name": "Jalahalli",
+      "name_kn": "ಜಾಲಹಳ್ಳಿ",
+      "lines": [
+        "green"
+      ],
+      "lat": 13.03941,
+      "lng": 77.519735,
+      "entrances": [
+        {
+          "lat": 13.039824,
+          "lng": 77.519399,
+          "label": "A"
+        },
+        {
+          "lat": 13.039297,
+          "lng": 77.520342,
+          "label": "B"
+        }
+      ],
+      "osm": "node/5960788725"
+    },
+    {
+      "id": "jaya-prakash-nagar",
+      "name": "Jaya Prakash Nagar",
+      "name_kn": "ಜೆಪಿ ನಗರ",
+      "lines": [
+        "green"
+      ],
+      "lat": 12.907475,
+      "lng": 77.573128,
+      "entrances": [
+        {
+          "lat": 12.907492,
+          "lng": 77.573369,
+          "label": "B"
+        },
+        {
+          "lat": 12.907132,
+          "lng": 77.573401,
+          "label": "C"
+        },
+        {
+          "lat": 12.906668,
+          "lng": 77.57301,
+          "label": "D"
+        }
+      ],
+      "osm": "node/6432710293"
+    },
+    {
+      "id": "jayadeva-hospital",
+      "name": "Jayadeva Hospital",
+      "name_kn": "ಜಯದೇವ ಆಸ್ಪತ್ರೆ",
+      "lines": [
+        "yellow"
+      ],
+      "lat": 12.916731,
+      "lng": 77.599966,
+      "entrances": [
+        {
+          "lat": 12.916912,
+          "lng": 77.599446,
+          "label": "A: Jayadeva Hospital"
+        },
+        {
+          "lat": 12.917003,
+          "lng": 77.599743,
+          "label": "B: Jayadeva Hospital"
+        },
+        {
+          "lat": 12.917217,
+          "lng": 77.599749,
+          "label": "C: Jayadeva Hospital"
+        },
+        {
+          "lat": 12.917111,
+          "lng": 77.600179,
+          "label": "D: BTM Layout 1st stage"
+        },
+        {
+          "lat": 12.916983,
+          "lng": 77.600188,
+          "label": "E: BTM Layout 1st stage"
+        },
+        {
+          "lat": 12.916865,
+          "lng": 77.600304,
+          "label": "F: BTM Layout 1st stage"
+        },
+        {
+          "lat": 12.916571,
+          "lng": 77.600425,
+          "label": "G: BTM Layout 2nd stage"
+        },
+        {
+          "lat": 12.916516,
+          "lng": 77.600168,
+          "label": "H: BTM Layout 2nd stage"
+        },
+        {
+          "lat": 12.916227,
+          "lng": 77.6002,
+          "label": "I: BTM Layout 2nd stage"
+        },
+        {
+          "lat": 12.916299,
+          "lng": 77.599675,
+          "label": "J: JP Nagar 3rd Phase"
+        },
+        {
+          "lat": 12.916514,
+          "lng": 77.599676,
+          "label": "K: JP Nagar 3rd Phase"
+        },
+        {
+          "lat": 12.91657,
+          "lng": 77.59938,
+          "label": "L: JP Nagar 3rd Phase"
+        }
+      ],
+      "osm": "node/3302642058"
+    },
+    {
+      "id": "jayanagar",
+      "name": "Jayanagar",
+      "name_kn": "ಜಯನಗರ",
+      "lines": [
+        "green"
+      ],
+      "lat": 12.929507,
+      "lng": 77.580144,
+      "entrances": [
+        {
+          "lat": 12.929299,
+          "lng": 77.580387,
+          "label": "A"
+        },
+        {
+          "lat": 12.929009,
+          "lng": 77.580324,
+          "label": "B"
+        },
+        {
+          "lat": 12.929977,
+          "lng": 77.580016,
+          "label": "C"
+        }
+      ],
+      "osm": "node/6432710296"
+    },
+    {
+      "id": "jnanabharathi",
+      "name": "Jnanabharathi",
+      "name_kn": "ಜ್ಞಾನ ಭಾರತಿ",
+      "lines": [
+        "purple"
+      ],
+      "lat": 12.93542,
+      "lng": 77.512177,
+      "entrances": [
+        {
+          "lat": 12.935097,
+          "lng": 77.512209,
+          "label": "A"
+        },
+        {
+          "lat": 12.935527,
+          "lng": 77.512148,
+          "label": "B"
+        },
+        {
+          "lat": 12.934965,
+          "lng": 77.51183,
+          "label": "C"
+        }
+      ],
+      "osm": "node/9049846515"
+    },
+    {
+      "id": "kadugodi-tree-park",
+      "name": "Kadugodi Tree Park",
+      "name_kn": "ಕಾಡುಗೋಡಿ ಟ್ರೀ ಪಾರ್ಕ್",
+      "lines": [
+        "purple"
+      ],
+      "lat": 12.98565,
+      "lng": 77.747012,
+      "entrances": [
+        {
+          "lat": 12.985803,
+          "lng": 77.747137,
+          "label": "A"
+        },
+        {
+          "lat": 12.985465,
+          "lng": 77.747025,
+          "label": "B"
+        }
+      ],
+      "osm": "node/11941186870"
+    },
+    {
+      "id": "kengeri",
+      "name": "Kengeri",
+      "name_kn": "ಕೆಂಗೇರಿ",
+      "lines": [
+        "purple"
+      ],
+      "lat": 12.90791,
+      "lng": 77.476578,
+      "entrances": [
+        {
+          "lat": 12.907753,
+          "lng": 77.476551,
+          "label": "A"
+        },
+        {
+          "lat": 12.908083,
+          "lng": 77.476344,
+          "label": "B"
+        }
+      ],
+      "osm": "node/9051405243"
+    },
+    {
+      "id": "kengeri-bus-terminal",
+      "name": "Kengeri Bus Terminal",
+      "name_kn": "ಕೆಂಗೇರಿ ಬಸ್ ಟರ್ಮಿನಲ್",
+      "lines": [
+        "purple"
+      ],
+      "lat": 12.914788,
+      "lng": 77.487773,
+      "entrances": [
+        {
+          "lat": 12.914479,
+          "lng": 77.487241,
+          "label": "A"
+        },
+        {
+          "lat": 12.915089,
+          "lng": 77.488061,
+          "label": "B"
+        }
+      ],
+      "osm": "node/9051395755"
+    },
+    {
+      "id": "konanakunte-cross",
+      "name": "Konanakunte Cross",
+      "name_kn": "ಕೋಣನಕುಂಟೆ ಕ್ರಾಸ್",
+      "lines": [
+        "green"
+      ],
+      "lat": 12.888967,
+      "lng": 77.562667,
+      "entrances": [
+        {
+          "lat": 12.888873,
+          "lng": 77.562894,
+          "label": "A"
+        },
+        {
+          "lat": 12.889109,
+          "lng": 77.562582,
+          "label": "B"
+        }
+      ],
+      "osm": "node/9919651777"
+    },
+    {
+      "id": "krantivira-sangolli-rayanna-railway-station",
+      "name": "Krantivira Sangolli Rayanna Railway Station",
+      "name_kn": "ಕ್ರಾಂತಿವೀರ ಸಂಗೊಳ್ಳಿ ರಾಯಣ್ಣ",
+      "lines": [
+        "purple"
+      ],
+      "lat": 12.975877,
+      "lng": 77.565377,
+      "entrances": [
+        {
+          "lat": 12.97632,
+          "lng": 77.567029,
+          "label": "A"
+        },
+        {
+          "lat": 12.975413,
+          "lng": 77.565308,
+          "label": "C"
+        },
+        {
+          "lat": 12.976082,
+          "lng": 77.56465,
+          "label": "D"
+        },
+        {
+          "lat": 12.976257,
+          "lng": 77.564467,
+          "label": "E"
+        }
+      ],
+      "osm": "node/6400857559"
+    },
+    {
+      "id": "krishna-rajendra-market",
+      "name": "Krishna Rajendra Market",
+      "name_kn": "ಕೃಷ್ಣರಾಜೇಂದ್ರ ಮಾರುಕಟ್ಟೆ",
+      "lines": [
+        "green"
+      ],
+      "lat": 12.960879,
+      "lng": 77.574658,
+      "entrances": [
+        {
+          "lat": 12.960519,
+          "lng": 77.574484
+        },
+        {
+          "lat": 12.961393,
+          "lng": 77.575104
+        },
+        {
+          "lat": 12.961864,
+          "lng": 77.575676,
+          "label": "A"
+        },
+        {
+          "lat": 12.960648,
+          "lng": 77.575039,
+          "label": "B"
+        },
+        {
+          "lat": 12.960003,
+          "lng": 77.57431,
+          "label": "C"
+        },
+        {
+          "lat": 12.960753,
+          "lng": 77.574623,
+          "label": "D"
+        },
+        {
+          "lat": 12.96186,
+          "lng": 77.575317,
+          "label": "E"
+        }
+      ],
+      "osm": "node/6432710300"
+    },
+    {
+      "id": "krishnarajapura",
+      "name": "Krishnarajapura",
+      "name_kn": "ಕೃಷ್ಣರಾಜಪುರ (ಕೆ.ಆರ್.ಪುರ)",
+      "lines": [
+        "purple"
+      ],
+      "lat": 12.999902,
+      "lng": 77.67767,
+      "entrances": [
+        {
+          "lat": 12.999998,
+          "lng": 77.677338
+        },
+        {
+          "lat": 12.999868,
+          "lng": 77.676897,
+          "label": "A"
+        },
+        {
+          "lat": 12.999911,
+          "lng": 77.678198,
+          "label": "Blue"
+        }
+      ],
+      "osm": "node/5760197765"
+    },
+    {
+      "id": "kudlu-gate",
+      "name": "Kudlu Gate",
+      "name_kn": "ಕುಡ್ಲು ಗೇಟ್",
+      "lines": [
+        "yellow"
+      ],
+      "lat": 12.889926,
+      "lng": 77.639216,
+      "entrances": [
+        {
+          "lat": 12.889344,
+          "lng": 77.639426
+        },
+        {
+          "lat": 12.889861,
+          "lng": 77.639046
+        }
+      ],
+      "osm": "node/5760198187"
+    },
+    {
+      "id": "kundalahalli",
+      "name": "Kundalahalli",
+      "name_kn": "ಕುಂದಲಹಳ್ಳಿ",
+      "lines": [
+        "purple"
+      ],
+      "lat": 12.977594,
+      "lng": 77.715559,
+      "entrances": [
+        {
+          "lat": 12.977745,
+          "lng": 77.715662,
+          "label": "A"
+        },
+        {
+          "lat": 12.977392,
+          "lng": 77.715665,
+          "label": "B"
+        }
+      ],
+      "osm": "node/5760197755"
+    },
+    {
+      "id": "lalbagh",
+      "name": "Lalbagh",
+      "name_kn": "ಲಾಲ್ ಬಾಗ್",
+      "lines": [
+        "green"
+      ],
+      "lat": 12.946526,
+      "lng": 77.580016,
+      "entrances": [
+        {
+          "lat": 12.94624,
+          "lng": 77.580193,
+          "label": "A"
+        },
+        {
+          "lat": 12.94577,
+          "lng": 77.57983,
+          "label": "B"
+        },
+        {
+          "lat": 12.94616,
+          "lng": 77.579903,
+          "label": "C"
+        }
+      ],
+      "osm": "node/6432710298"
+    },
+    {
+      "id": "madavara",
+      "name": "Madavara",
+      "name_kn": "ಮದವರ",
+      "lines": [
+        "green"
+      ],
+      "lat": 13.057421,
+      "lng": 77.472806,
+      "entrances": [
+        {
+          "lat": 13.056693,
+          "lng": 77.472639
+        },
+        {
+          "lat": 13.057609,
+          "lng": 77.472344,
+          "label": "A"
+        },
+        {
+          "lat": 13.057318,
+          "lng": 77.473549,
+          "label": "B"
+        }
+      ],
+      "osm": "node/1576973953"
+    },
+    {
+      "id": "magadi-road",
+      "name": "Magadi Road",
+      "name_kn": "ಮಾಗಡಿ ರಸ್ತೆ",
+      "lines": [
+        "purple"
+      ],
+      "lat": 12.975632,
+      "lng": 77.555352,
+      "entrances": [
+        {
+          "lat": 12.975716,
+          "lng": 77.55585,
+          "label": "A"
+        },
+        {
+          "lat": 12.975462,
+          "lng": 77.555843,
+          "label": "B"
+        },
+        {
+          "lat": 12.97568,
+          "lng": 77.55481,
+          "label": "C"
+        }
+      ],
+      "osm": "node/6400857560"
+    },
+    {
+      "id": "mahakavi-kuvempu-road",
+      "name": "Mahakavi Kuvempu Road",
+      "name_kn": "ಮಹಾಕವಿ ಕುವೆಂಪು ರಸ್ತೆ",
+      "lines": [
+        "green"
+      ],
+      "lat": 12.99853,
+      "lng": 77.556899,
+      "entrances": [
+        {
+          "lat": 12.99859,
+          "lng": 77.557233,
+          "label": "A"
+        },
+        {
+          "lat": 12.998234,
+          "lng": 77.557303,
+          "label": "B"
+        },
+        {
+          "lat": 12.998388,
+          "lng": 77.556715,
+          "label": "C"
+        }
+      ],
+      "osm": "node/6410706689"
+    },
+    {
+      "id": "mahalakshmi",
+      "name": "Mahalakshmi",
+      "name_kn": "ಮಹಾಲಕ್ಷ್ಮಿ",
+      "lines": [
+        "green"
+      ],
+      "lat": 13.008047,
+      "lng": 77.548807,
+      "entrances": [
+        {
+          "lat": 13.007826,
+          "lng": 77.548578,
+          "label": "A"
+        },
+        {
+          "lat": 13.008,
+          "lng": 77.548602,
+          "label": "A"
+        },
+        {
+          "lat": 13.008209,
+          "lng": 77.548631,
+          "label": "B"
+        },
+        {
+          "lat": 13.007915,
+          "lng": 77.548942,
+          "label": "C"
+        }
+      ],
+      "osm": "node/6410706691"
+    },
+    {
+      "id": "mahatma-gandhi-road",
+      "name": "Mahatma Gandhi Road",
+      "name_kn": "ಮಹಾತ್ಮ ಗಾಂಧಿ ರಸ್ತೆ",
+      "lines": [
+        "purple"
+      ],
+      "lat": 12.975526,
+      "lng": 77.60679,
+      "entrances": [
+        {
+          "lat": 12.975661,
+          "lng": 77.60647,
+          "label": "A"
+        },
+        {
+          "lat": 12.975494,
+          "lng": 77.607182,
+          "label": "B"
+        },
+        {
+          "lat": 12.975254,
+          "lng": 77.606683,
+          "label": "C"
+        },
+        {
+          "lat": 12.974822,
+          "lng": 77.6066,
+          "label": "D"
+        }
+      ],
+      "osm": "node/6400857554"
+    },
+    {
+      "id": "manjunathanagara",
+      "name": "Manjunathanagara",
+      "name_kn": "ಮಂಜುನಾಥನಗರ",
+      "lines": [
+        "green"
+      ],
+      "lat": 13.05009,
+      "lng": 77.494446,
+      "entrances": [],
+      "osm": "node/1576973980"
+    },
+    {
+      "id": "mantri-square-sampige-road",
+      "name": "Mantri Square Sampige Road",
+      "name_kn": "ಮಂತ್ರಿ ಸ್ಕ್ವೇರ್ ಸಂಪಿಗೆ ರಸ್ತೆ",
+      "lines": [
+        "green"
+      ],
+      "lat": 12.990463,
+      "lng": 77.570729,
+      "entrances": [
+        {
+          "lat": 12.990046,
+          "lng": 77.571248,
+          "label": "A"
+        },
+        {
+          "lat": 12.989874,
+          "lng": 77.570992,
+          "label": "B"
+        },
+        {
+          "lat": 12.990951,
+          "lng": 77.570553,
+          "label": "C"
+        }
+      ],
+      "osm": "node/6410706688"
+    },
+    {
+      "id": "mysore-road",
+      "name": "Mysore Road",
+      "name_kn": "ಮೈಸೂರು ರಸ್ತೆ",
+      "lines": [
+        "purple"
+      ],
+      "lat": 12.946718,
+      "lng": 77.530159,
+      "entrances": [
+        {
+          "lat": 12.94675,
+          "lng": 77.530045,
+          "label": "A"
+        },
+        {
+          "lat": 12.946844,
+          "lng": 77.530268,
+          "label": "B"
+        },
+        {
+          "lat": 12.946244,
+          "lng": 77.53069,
+          "label": "C"
+        },
+        {
+          "lat": 12.946497,
+          "lng": 77.529491,
+          "label": "D"
+        }
+      ],
+      "osm": "node/6400857565"
+    },
+    {
+      "id": "nadaprabhu-kempegowda-station-majestic",
+      "name": "Nadaprabhu Kempegowda Station, Majestic",
+      "name_kn": "ನಾಡಪ್ರಭು ಕೆಂಪೇಗೌಡ ನಿಲ್ದಾಣ, ಮೆಜೆಸ್ಟಿಕ್",
+      "lines": [
+        "green",
+        "purple"
+      ],
+      "lat": 12.975708,
+      "lng": 77.572876,
+      "entrances": [
+        {
+          "lat": 12.975733,
+          "lng": 77.571201,
+          "label": "A"
+        },
+        {
+          "lat": 12.975853,
+          "lng": 77.571208,
+          "label": "A1: KSR Railway Station"
+        },
+        {
+          "lat": 12.974186,
+          "lng": 77.573033,
+          "label": "B"
+        },
+        {
+          "lat": 12.974628,
+          "lng": 77.572917,
+          "label": "C"
+        },
+        {
+          "lat": 12.976098,
+          "lng": 77.573149,
+          "label": "D"
+        }
+      ],
+      "osm": "node/6400857558"
+    },
+    {
+      "id": "nagasandra",
+      "name": "Nagasandra",
+      "name_kn": "ನಾಗಸಂದ್ರ",
+      "lines": [
+        "green"
+      ],
+      "lat": 13.047954,
+      "lng": 77.500142,
+      "entrances": [
+        {
+          "lat": 13.048333,
+          "lng": 77.499711,
+          "label": "A: Manjunath Nagar Side"
+        },
+        {
+          "lat": 13.047824,
+          "lng": 77.500786,
+          "label": "B: MS Ramaiah Enclave Side"
+        },
+        {
+          "lat": 13.048193,
+          "lng": 77.500396,
+          "label": "IKEA Side"
+        }
+      ],
+      "osm": "node/11941173068"
+    },
+    {
+      "id": "nallurahalli",
+      "name": "Nallurahalli",
+      "name_kn": "ನಲ್ಲೂರಹಳ್ಳಿ",
+      "lines": [
+        "purple"
+      ],
+      "lat": 12.976641,
+      "lng": 77.724885,
+      "entrances": [
+        {
+          "lat": 12.976819,
+          "lng": 77.724851,
+          "label": "A"
+        },
+        {
+          "lat": 12.976495,
+          "lng": 77.724997,
+          "label": "B"
+        },
+        {
+          "lat": 12.976512,
+          "lng": 77.724654,
+          "label": "C"
+        },
+        {
+          "lat": 12.976464,
+          "lng": 77.725304,
+          "label": "D"
+        }
+      ],
+      "osm": "node/5760197754"
+    },
+    {
+      "id": "national-college",
+      "name": "National College",
+      "name_kn": "ನ್ಯಾಶನಲ್ ಕಾಲೇಜು",
+      "lines": [
+        "green"
+      ],
+      "lat": 12.950527,
+      "lng": 77.57369,
+      "entrances": [
+        {
+          "lat": 12.95112,
+          "lng": 77.573884,
+          "label": "A"
+        },
+        {
+          "lat": 12.950842,
+          "lng": 77.573886,
+          "label": "B"
+        },
+        {
+          "lat": 12.950123,
+          "lng": 77.573581,
+          "label": "C"
+        }
+      ],
+      "osm": "node/6432710299"
+    },
+    {
+      "id": "pantharapalya-nayandahalli",
+      "name": "Pantharapalya - Nayandahalli",
+      "name_kn": "ಪಂತರಪಾಳ್ಯ - ನಾಯಂಡಹಳ್ಳಿ",
+      "lines": [
+        "purple"
+      ],
+      "lat": 12.941671,
+      "lng": 77.525117,
+      "entrances": [
+        {
+          "lat": 12.941667,
+          "lng": 77.52526,
+          "label": "A"
+        },
+        {
+          "lat": 12.941831,
+          "lng": 77.524978,
+          "label": "B"
+        }
+      ],
+      "osm": "node/9050797592"
+    },
+    {
+      "id": "pattanagere",
+      "name": "Pattanagere",
+      "name_kn": "ಪಟ್ಟಣಗೆರೆ",
+      "lines": [
+        "purple"
+      ],
+      "lat": 12.924302,
+      "lng": 77.49828,
+      "entrances": [
+        {
+          "lat": 12.924066,
+          "lng": 77.498248,
+          "label": "A"
+        },
+        {
+          "lat": 12.924374,
+          "lng": 77.498135,
+          "label": "B"
+        }
+      ],
+      "osm": "node/9051417969"
+    },
+    {
+      "id": "pattandur-agrahara",
+      "name": "Pattandur Agrahara",
+      "name_kn": "ಪಟ್ಟಂದೂರು ಅಗ್ರಹಾರ",
+      "lines": [
+        "purple"
+      ],
+      "lat": 12.987639,
+      "lng": 77.737772,
+      "entrances": [
+        {
+          "lat": 12.987485,
+          "lng": 77.737372
+        },
+        {
+          "lat": 12.987754,
+          "lng": 77.737917,
+          "label": "A"
+        },
+        {
+          "lat": 12.987424,
+          "lng": 77.737892,
+          "label": "B"
+        }
+      ],
+      "osm": "node/5760197749"
+    },
+    {
+      "id": "peenya",
+      "name": "Peenya",
+      "name_kn": "ಪೀಣ್ಯ",
+      "lines": [
+        "green"
+      ],
+      "lat": 13.033019,
+      "lng": 77.533201,
+      "entrances": [
+        {
+          "lat": 13.032905,
+          "lng": 77.533595,
+          "label": "B"
+        }
+      ],
+      "osm": "node/6410706695"
+    },
+    {
+      "id": "peenya-industry",
+      "name": "Peenya Industry",
+      "name_kn": "ಪೀಣ್ಯ ಇಂಡಸ್ಟ್ರಿ",
+      "lines": [
+        "green"
+      ],
+      "lat": 13.036318,
+      "lng": 77.525492,
+      "entrances": [
+        {
+          "lat": 13.036616,
+          "lng": 77.525095,
+          "label": "A"
+        },
+        {
+          "lat": 13.036061,
+          "lng": 77.526127,
+          "label": "B"
+        }
+      ],
+      "osm": "node/6410706696"
+    },
+    {
+      "id": "ragigudda",
+      "name": "Ragigudda",
+      "name_kn": "ರಾಗಿಗುಡ್ಡ",
+      "lines": [
+        "yellow"
+      ],
+      "lat": 12.917081,
+      "lng": 77.588302,
+      "entrances": [
+        {
+          "lat": 12.916862,
+          "lng": 77.588201,
+          "label": "A"
+        },
+        {
+          "lat": 12.917312,
+          "lng": 77.588223,
+          "label": "B"
+        }
+      ],
+      "osm": "node/5760198239"
+    },
+    {
+      "id": "rajajinagar",
+      "name": "Rajajinagar",
+      "name_kn": "ರಾಜಾಜಿನಗರ",
+      "lines": [
+        "green"
+      ],
+      "lat": 13.000525,
+      "lng": 77.549657,
+      "entrances": [
+        {
+          "lat": 12.999462,
+          "lng": 77.549539,
+          "label": "A"
+        },
+        {
+          "lat": 12.999518,
+          "lng": 77.549623,
+          "label": "A"
+        },
+        {
+          "lat": 13.000191,
+          "lng": 77.550083,
+          "label": "B"
+        }
+      ],
+      "osm": "node/6410706690"
+    },
+    {
+      "id": "rajarajeshwari-nagar",
+      "name": "Rajarajeshwari Nagar",
+      "name_kn": "ರಾಜರಾಜೇಶ್ವರಿ ನಗರ",
+      "lines": [
+        "purple"
+      ],
+      "lat": 12.9366,
+      "lng": 77.519679,
+      "entrances": [
+        {
+          "lat": 12.936465,
+          "lng": 77.519617,
+          "label": "A"
+        },
+        {
+          "lat": 12.936739,
+          "lng": 77.51952,
+          "label": "B"
+        }
+      ],
+      "osm": "node/9051410519"
+    },
+    {
+      "id": "rashtreeya-vidyalaya-road",
+      "name": "Rashtreeya Vidyalaya Road",
+      "name_kn": "ರಾಷ್ಟ್ರೀಯ ವಿದ್ಯಾಲಯ ರಸ್ತೆ",
+      "lines": [
+        "green",
+        "yellow"
+      ],
+      "lat": 12.921581,
+      "lng": 77.580202,
+      "entrances": [
+        {
+          "lat": 12.920954,
+          "lng": 77.580408,
+          "label": "A"
+        },
+        {
+          "lat": 12.920807,
+          "lng": 77.580108,
+          "label": "B"
+        },
+        {
+          "lat": 12.922202,
+          "lng": 77.580015,
+          "label": "C"
+        }
+      ],
+      "osm": "node/6432710295"
+    },
+    {
+      "id": "sandal-soap-factory",
+      "name": "Sandal Soap Factory",
+      "name_kn": "ಸಾಂಡಲ್ ಸೋಪ್ ಕಾರ್ಖಾನೆ",
+      "lines": [
+        "green"
+      ],
+      "lat": 13.014654,
+      "lng": 77.553984,
+      "entrances": [
+        {
+          "lat": 13.01336,
+          "lng": 77.554378,
+          "label": "A"
+        },
+        {
+          "lat": 13.01402,
+          "lng": 77.553946,
+          "label": "B"
+        }
+      ],
+      "osm": "node/6410706692"
+    },
+    {
+      "id": "seetharampalya",
+      "name": "Seetharampalya",
+      "name_kn": "ಸೀತಾರಾಮ ಪಾಳ್ಯ",
+      "lines": [
+        "purple"
+      ],
+      "lat": 12.980856,
+      "lng": 77.708785,
+      "entrances": [
+        {
+          "lat": 12.980889,
+          "lng": 77.708987,
+          "label": "A"
+        },
+        {
+          "lat": 12.98072,
+          "lng": 77.708656,
+          "label": "B"
+        }
+      ],
+      "osm": "node/5760197757"
+    },
+    {
+      "id": "silk-institute",
+      "name": "Silk Institute",
+      "name_kn": "ರೇಷ್ಮೆ ಸಂಸ್ಥೆ",
+      "lines": [
+        "green"
+      ],
+      "lat": 12.86173,
+      "lng": 77.529955,
+      "entrances": [
+        {
+          "lat": 12.861669,
+          "lng": 77.530162,
+          "label": "A"
+        },
+        {
+          "lat": 12.861564,
+          "lng": 77.529677,
+          "label": "B"
+        }
+      ],
+      "osm": "node/9919651773"
+    },
+    {
+      "id": "singasandra",
+      "name": "Singasandra",
+      "name_kn": "ಸಿಂಗಸಂದ್ರ",
+      "lines": [
+        "yellow"
+      ],
+      "lat": 12.880818,
+      "lng": 77.644846,
+      "entrances": [
+        {
+          "lat": 12.880671,
+          "lng": 77.644726
+        },
+        {
+          "lat": 12.881215,
+          "lng": 77.644408
+        }
+      ],
+      "osm": "node/5760198182"
+    },
+    {
+      "id": "singayyanapalya",
+      "name": "Singayyanapalya",
+      "name_kn": "ಸಿಂಗಯ್ಯನಪಾಳ್ಯ",
+      "lines": [
+        "purple"
+      ],
+      "lat": 12.996545,
+      "lng": 77.692718,
+      "entrances": [
+        {
+          "lat": 12.996749,
+          "lng": 77.692558,
+          "label": "A"
+        }
+      ],
+      "osm": "node/5760197764"
+    },
+    {
+      "id": "sir-m-visvesvaraya-stn-central-college",
+      "name": "Sir M. Visvesvaraya Stn., Central College",
+      "name_kn": "ಸರ್ ಎಂ ವಿಶ್ವೇಶ್ವರಯ್ಯ - ಸೆಂಟ್ರಲ್ ಕಾಲೇಜು",
+      "lines": [
+        "purple"
+      ],
+      "lat": 12.97452,
+      "lng": 77.58422,
+      "entrances": [
+        {
+          "lat": 12.974937,
+          "lng": 77.584667,
+          "label": "A"
+        },
+        {
+          "lat": 12.974628,
+          "lng": 77.58491,
+          "label": "B"
+        },
+        {
+          "lat": 12.973505,
+          "lng": 77.582958,
+          "label": "C"
+        },
+        {
+          "lat": 12.973834,
+          "lng": 77.582764,
+          "label": "D"
+        },
+        {
+          "lat": 12.974088,
+          "lng": 77.583226,
+          "label": "E"
+        },
+        {
+          "lat": 12.974457,
+          "lng": 77.584766,
+          "label": "Emergency Exit"
+        }
+      ],
+      "osm": "node/6400857557"
+    },
+    {
+      "id": "south-end-circle",
+      "name": "South End Circle",
+      "name_kn": "ತಿ.ನಂ.ಶ್ರೀ ವೃತ್ತ",
+      "lines": [
+        "green"
+      ],
+      "lat": 12.938257,
+      "lng": 77.580056,
+      "entrances": [
+        {
+          "lat": 12.937924,
+          "lng": 77.580218,
+          "label": "A"
+        },
+        {
+          "lat": 12.937897,
+          "lng": 77.579904,
+          "label": "B"
+        },
+        {
+          "lat": 12.938184,
+          "lng": 77.579839,
+          "label": "C"
+        }
+      ],
+      "osm": "node/6432710297"
+    },
+    {
+      "id": "sri-balagangadharanatha-swamiji-station-hosahalli",
+      "name": "Sri Balagangadharanatha Swamiji Station, Hosahalli",
+      "name_kn": "ಶ್ರೀ ಬಾಲಗಂಗಾಧರನಾಥ",
+      "lines": [
+        "purple"
+      ],
+      "lat": 12.974293,
+      "lng": 77.545621,
+      "entrances": [
+        {
+          "lat": 12.974376,
+          "lng": 77.54587,
+          "label": "A"
+        },
+        {
+          "lat": 12.974066,
+          "lng": 77.545897,
+          "label": "B"
+        },
+        {
+          "lat": 12.974013,
+          "lng": 77.54493,
+          "label": "C"
+        }
+      ],
+      "osm": "node/6400857561"
+    },
+    {
+      "id": "sri-sathya-sai-hospital",
+      "name": "Sri Sathya Sai Hospital",
+      "name_kn": "ಶ್ರೀ ಸತ್ಯ ಸಾಯಿ ಆಸ್ಪತ್ರೆ",
+      "lines": [
+        "purple"
+      ],
+      "lat": 12.981195,
+      "lng": 77.727536,
+      "entrances": [
+        {
+          "lat": 12.981165,
+          "lng": 77.72744,
+          "label": "A: KIADB Industrial Area Side"
+        },
+        {
+          "lat": 12.981101,
+          "lng": 77.727697,
+          "label": "B: Sri Sathya Sai Hospital Side"
+        }
+      ],
+      "osm": "node/5760197751"
+    },
+    {
+      "id": "srirampura",
+      "name": "Srirampura",
+      "name_kn": "ಶ್ರೀರಾಮಪುರ",
+      "lines": [
+        "green"
+      ],
+      "lat": 12.996525,
+      "lng": 77.563196,
+      "entrances": [
+        {
+          "lat": 12.996685,
+          "lng": 77.563585,
+          "label": "A"
+        },
+        {
+          "lat": 12.996521,
+          "lng": 77.563926,
+          "label": "B"
+        },
+        {
+          "lat": 12.996239,
+          "lng": 77.563692,
+          "label": "C"
+        }
+      ],
+      "osm": "node/5960788726"
+    },
+    {
+      "id": "swami-vivekananda-road",
+      "name": "Swami Vivekananda Road",
+      "name_kn": "ಸ್ವಾಮಿ ವಿವೇಕಾನಂದ ರಸ್ತೆ",
+      "lines": [
+        "purple"
+      ],
+      "lat": 12.985931,
+      "lng": 77.644897,
+      "entrances": [
+        {
+          "lat": 12.985871,
+          "lng": 77.644475,
+          "label": "A"
+        },
+        {
+          "lat": 12.986135,
+          "lng": 77.645095,
+          "label": "B"
+        },
+        {
+          "lat": 12.985497,
+          "lng": 77.644859,
+          "label": "C"
+        },
+        {
+          "lat": 12.985412,
+          "lng": 77.644561,
+          "label": "D"
+        },
+        {
+          "lat": 12.98526,
+          "lng": 77.644272,
+          "label": "E"
+        }
+      ],
+      "osm": "node/6400857550"
+    },
+    {
+      "id": "thalaghattapura",
+      "name": "Thalaghattapura",
+      "name_kn": "ತಲಘಟ್ಟಪುರ",
+      "lines": [
+        "green"
+      ],
+      "lat": 12.87141,
+      "lng": 77.538396,
+      "entrances": [
+        {
+          "lat": 12.8713,
+          "lng": 77.538527,
+          "label": "A"
+        },
+        {
+          "lat": 12.871519,
+          "lng": 77.538225,
+          "label": "B"
+        }
+      ],
+      "osm": "node/9919651774"
+    },
+    {
+      "id": "trinity",
+      "name": "Trinity",
+      "name_kn": "ಟ್ರಿನಿಟಿ",
+      "lines": [
+        "purple"
+      ],
+      "lat": 12.973022,
+      "lng": 77.61702,
+      "entrances": [
+        {
+          "lat": 12.972833,
+          "lng": 77.617069,
+          "label": "A"
+        },
+        {
+          "lat": 12.973106,
+          "lng": 77.617356,
+          "label": "B"
+        },
+        {
+          "lat": 12.972604,
+          "lng": 77.617198,
+          "label": "C"
+        }
+      ],
+      "osm": "node/6400857553"
+    },
+    {
+      "id": "vajarahalli",
+      "name": "Vajarahalli",
+      "name_kn": "ವಾಜರಹಳ್ಳಿ",
+      "lines": [
+        "green"
+      ],
+      "lat": 12.877437,
+      "lng": 77.544741,
+      "entrances": [
+        {
+          "lat": 12.877441,
+          "lng": 77.544933,
+          "label": "A"
+        },
+        {
+          "lat": 12.877586,
+          "lng": 77.544579,
+          "label": "B"
+        }
+      ],
+      "osm": "node/9919651775"
+    },
+    {
+      "id": "vijayanagar",
+      "name": "Vijayanagar",
+      "name_kn": "ವಿಜಯನಗರ",
+      "lines": [
+        "purple"
+      ],
+      "lat": 12.970956,
+      "lng": 77.537404,
+      "entrances": [
+        {
+          "lat": 12.971233,
+          "lng": 77.53734,
+          "label": "A"
+        },
+        {
+          "lat": 12.970405,
+          "lng": 77.537436,
+          "label": "B"
+        }
+      ],
+      "osm": "node/6400857562"
+    },
+    {
+      "id": "whitefield",
+      "name": "Whitefield (Kadugodi)",
+      "name_kn": "ವೈಟ್‌ಫೀಲ್ಡ್ (ಕಾಡುಗೋಡಿ)",
+      "lines": [
+        "purple"
+      ],
+      "lat": 12.995743,
+      "lng": 77.757949,
+      "entrances": [
+        {
+          "lat": 12.995045,
+          "lng": 77.757834,
+          "label": "A"
+        },
+        {
+          "lat": 12.995927,
+          "lng": 77.758079,
+          "label": "B"
+        }
+      ],
+      "osm": "node/5760197744"
+    },
+    {
+      "id": "yelachenahalli",
+      "name": "Yelachenahalli",
+      "name_kn": "ಯಲಚೇನಹಳ್ಳಿ",
+      "lines": [
+        "green"
+      ],
+      "lat": 12.89605,
+      "lng": 77.570119,
+      "entrances": [
+        {
+          "lat": 12.896384,
+          "lng": 77.570805,
+          "label": "A"
+        },
+        {
+          "lat": 12.896084,
+          "lng": 77.570613,
+          "label": "B"
+        },
+        {
+          "lat": 12.895772,
+          "lng": 77.570277,
+          "label": "C"
+        },
+        {
+          "lat": 12.895551,
+          "lng": 77.569523,
+          "label": "D"
+        },
+        {
+          "lat": 12.896212,
+          "lng": 77.570061,
+          "label": "E"
+        }
+      ],
+      "osm": "node/6432710292"
+    },
+    {
+      "id": "yeshwantpur",
+      "name": "Yeshwantpur",
+      "name_kn": "ಯಶವಂತಪುರ",
+      "lines": [
+        "green"
+      ],
+      "lat": 13.023268,
+      "lng": 77.549875,
+      "entrances": [
+        {
+          "lat": 13.022585,
+          "lng": 77.550498,
+          "label": "A"
+        },
+        {
+          "lat": 13.022975,
+          "lng": 77.549687,
+          "label": "B"
+        },
+        {
+          "lat": 13.023458,
+          "lng": 77.548986,
+          "label": "C"
+        },
+        {
+          "lat": 13.02329,
+          "lng": 77.550145,
+          "label": "D"
+        },
+        {
+          "lat": 13.023621,
+          "lng": 77.550336,
+          "label": "E"
+        },
+        {
+          "lat": 13.023149,
+          "lng": 77.55047,
+          "label": "G"
+        }
+      ],
+      "osm": "node/11941186869"
+    }
+  ]
+}
