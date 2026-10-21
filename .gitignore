@@ -1,0 +1,19 @@
+# OS / editors
+.DS_Store
+.idea/
+.vscode/
+*.iml
+*.swp
+
+# Python tooling
+__pycache__/
+*.pyc
+.venv/
+
+# Secrets / local config (never commit)
+*.jks
+*.keystore
+key.properties
+app/android/wallet.properties
+app/android/local.properties
+.env
