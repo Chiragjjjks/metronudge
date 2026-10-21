@@ -1,50 +1,59 @@
 package io.github.chiragjjjks.metronudge.platform
 
+import android.content.ActivityNotFoundException
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import androidx.core.net.toUri
 
+/** Where the ticket is bought. Both are official BMRCL channels. */
+enum class Channel(val label: String) {
+    WHATSAPP("WhatsApp bot"),
+    APP("Namma Metro app"),
+}
+
 /**
- * Opens the official Namma Metro app so you can buy the ticket there.
- *
- * BMRCL has no public ticketing API, so MetroNudge cannot buy or pay for you.
- * It finds the installed app by its name (no hard-coded package id) and copies
- * the destination so you can paste it into the station search.
+ * Hands the purchase to an official BMRCL channel. BMRCL has no public
+ * ticketing API, so MetroNudge never buys or pays itself: it opens the
+ * channel and copies the stations so you can paste them; you send/pay.
  */
 object Handoff {
-    private val NAMES = listOf("namma metro")
+    /** BMRCL's official WhatsApp ticketing number (+91 81055 56677). */
+    const val WHATSAPP_NUMBER = "918105556677"
+    const val NAMMA_METRO_PACKAGE = "com.aum.nammametro"
 
-    /** The installed Namma Metro app's launch intent, or null. */
-    fun findNammaMetro(context: Context): Intent? {
-        val pm = context.packageManager
-        val launcher = Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_LAUNCHER)
-        val match = pm.queryIntentActivities(launcher, 0).firstOrNull { info ->
-            info.activityInfo.packageName != context.packageName &&
-                NAMES.any { info.loadLabel(pm).toString().lowercase().contains(it) }
-        } ?: return null
-        return pm.getLaunchIntentForPackage(match.activityInfo.packageName)
-    }
+    fun findNammaMetro(context: Context): Intent? =
+        context.packageManager.getLaunchIntentForPackage(NAMMA_METRO_PACKAGE)
 
     fun isNammaMetroInstalled(context: Context) = findNammaMetro(context) != null
 
-    /** Copies [destinationName] and opens Namma Metro, or its store page. */
-    fun buyInNammaMetro(context: Context, destinationName: String?) {
-        destinationName?.let {
+    fun isWhatsAppInstalled(context: Context) =
+        listOf("com.whatsapp", "com.whatsapp.w4b").any { context.packageManager.getLaunchIntentForPackage(it) != null }
+
+    /** Opens [channel] for a trip, copying "Source to Destination" first. */
+    fun buy(context: Context, channel: Channel, sourceName: String?, destinationName: String?) {
+        val route = listOfNotNull(sourceName, destinationName).joinToString(" to ")
+        if (route.isNotEmpty()) {
             context.getSystemService(ClipboardManager::class.java)
-                .setPrimaryClip(ClipData.newPlainText("Destination station", it))
+                .setPrimaryClip(ClipData.newPlainText("Metro trip", route))
         }
-        val intent = findNammaMetro(context)
-            ?: Intent(Intent.ACTION_VIEW, "market://search?q=Namma%20Metro%20BMRCL%20official".toUri())
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        try {
-            context.startActivity(intent)
-        } catch (e: android.content.ActivityNotFoundException) {
-            context.startActivity(
-                Intent(Intent.ACTION_VIEW, "https://play.google.com/store/search?q=Namma%20Metro%20BMRCL&c=apps".toUri())
-                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
+        when (channel) {
+            // "Hi" starts BMRCL's bot; it then asks for stations and payment.
+            Channel.WHATSAPP -> open(context, "https://wa.me/$WHATSAPP_NUMBER?text=Hi".toUri().let { Intent(Intent.ACTION_VIEW, it) })
+            Channel.APP -> open(
+                context,
+                findNammaMetro(context) ?: Intent(Intent.ACTION_VIEW, "market://details?id=$NAMMA_METRO_PACKAGE".toUri()),
+                fallback = Intent(Intent.ACTION_VIEW, "https://play.google.com/store/apps/details?id=$NAMMA_METRO_PACKAGE".toUri()),
             )
+        }
+    }
+
+    private fun open(context: Context, intent: Intent, fallback: Intent? = null) {
+        try {
+            context.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+        } catch (e: ActivityNotFoundException) {
+            fallback?.let { context.startActivity(it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)) }
         }
     }
 }

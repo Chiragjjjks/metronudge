@@ -19,7 +19,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import io.github.chiragjjjks.metronudge.core.Trip
 import io.github.chiragjjjks.metronudge.core.TripPlanner
 import io.github.chiragjjjks.metronudge.data.Store
 import io.github.chiragjjjks.metronudge.platform.Handoff
@@ -74,7 +73,6 @@ class MainActivity : ComponentActivity() {
         // Re-read state whenever prefs change (the watcher writes from the service).
         val tick by remember { store.changes() }.collectAsState(0L)
         var stack by remember { mutableStateOf(listOf<Screen>(Screen.Home)) }
-        var lastTrip by remember { mutableStateOf<Trip?>(null) }
         val screen = stack.last()
 
         fun push(s: Screen) { stack = stack + s }
@@ -85,7 +83,7 @@ class MainActivity : ComponentActivity() {
 
         val importLauncher = rememberLauncherForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
             if (uri != null) {
-                importTicket(store, uri, lastTrip)
+                importTicket(store, uri)
                 stack = listOf(Screen.Home, Screen.Ticket)
             }
         }
@@ -108,8 +106,9 @@ class MainActivity : ComponentActivity() {
                         Screen.Trip(intent.getStringExtra(Notifier.EXTRA_SOURCE), intent.getStringExtra(Notifier.EXTRA_DESTINATION)),
                     )
                 }
+                ACTION_SHOW_TICKET -> if (store.ticket != null) stack = listOf(Screen.Home, Screen.Ticket)
                 Intent.ACTION_SEND -> sharedImage(intent)?.let {
-                    importTicket(store, it, lastTrip)
+                    importTicket(store, it)
                     stack = listOf(Screen.Home, Screen.Ticket)
                 }
             }
@@ -125,7 +124,12 @@ class MainActivity : ComponentActivity() {
                 watching = store.watching,
                 status = store.status,
                 ticket = store.ticket,
-                nammaMetroInstalled = remember { Handoff.isNammaMetroInstalled(this) },
+                channel = store.channel,
+                onChannel = { store.channel = it },
+                channelInstalled = when (store.channel) {
+                    io.github.chiragjjjks.metronudge.platform.Channel.WHATSAPP -> Handoff.isWhatsAppInstalled(this)
+                    io.github.chiragjjjks.metronudge.platform.Channel.APP -> Handoff.isNammaMetroInstalled(this)
+                },
                 onToggleWatching = { on ->
                     if (!on) WatchService.stop(this)
                     else {
@@ -165,14 +169,19 @@ class MainActivity : ComponentActivity() {
                     hasTicketToday = ticket?.isValidToday == true,
                     onChangeSource = { push(Screen.Pick("Starting from") { id -> s.copy(sourceId = id) }) },
                     onChangeDestination = { push(Screen.Pick("Going to") { id -> store.addRecent(id); s.copy(destinationId = id) }) },
+                    channel = store.channel,
                     onBuy = {
-                        if (src != null && dst != null) lastTrip = Trip(src, dst)
+                        if (src != null && dst != null) {
+                            store.lastTrip = listOf(src.id, dst.id)
+                        }
                         dst?.let { store.addRecent(it.id) }
-                        Handoff.buyInNammaMetro(this, dst?.name)
-                        if (dst != null) Toast.makeText(this, "\"${dst.name}\" copied — paste it in the search", Toast.LENGTH_LONG).show()
+                        Handoff.buy(this, store.channel, src?.name, dst?.name)
+                        if (src != null && dst != null) {
+                            Toast.makeText(this, "Copied \"${src.name} to ${dst.name}\" — paste it if asked", Toast.LENGTH_LONG).show()
+                        }
                     },
                     onImport = {
-                        if (src != null && dst != null) lastTrip = Trip(src, dst)
+                        if (src != null && dst != null) store.lastTrip = listOf(src.id, dst.id)
                         pickTicketImage()
                     },
                     onShowTicket = { push(Screen.Ticket) },
@@ -205,9 +214,10 @@ class MainActivity : ComponentActivity() {
             ?: if (Build.VERSION.SDK_INT >= 33) intent.getParcelableExtra(Intent.EXTRA_STREAM, Uri::class.java)
             else @Suppress("DEPRECATION") intent.getParcelableExtra(Intent.EXTRA_STREAM)
 
-    private fun importTicket(store: Store, uri: Uri, trip: Trip?) {
+    private fun importTicket(store: Store, uri: Uri) {
         try {
-            store.importTicket(uri, trip?.source?.id, trip?.destination?.id)
+            val ids = store.lastTrip
+            store.importTicket(uri, ids?.getOrNull(0), ids?.getOrNull(1))
             Toast.makeText(this, "Ticket saved for today", Toast.LENGTH_SHORT).show()
         } catch (e: Exception) {
             android.util.Log.w("MetroNudge", "Ticket import failed", e)
@@ -217,5 +227,6 @@ class MainActivity : ComponentActivity() {
 
     companion object {
         const val ACTION_TRIP = "io.github.chiragjjjks.metronudge.TRIP"
+        const val ACTION_SHOW_TICKET = "io.github.chiragjjjks.metronudge.SHOW_TICKET"
     }
 }

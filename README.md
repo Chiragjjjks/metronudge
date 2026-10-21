@@ -11,12 +11,22 @@ and gets your ticket ready before you reach the gate.
 
 ## What it does
 
-1. You walk within ~150 m of a metro station.
-2. MetroNudge (using the OS's battery-friendly geofencing) sends a notification:
-   *"Near RV Road → Rajajinagar. Ready to buy?"*
-3. One tap opens a trip card; another opens the official Namma Metro app to buy.
-   You pay with your UPI PIN as usual — MetroNudge never touches payments.
-4. Import the QR ticket into MetroNudge and show it full-screen at the gate.
+1. Turn on **Watch for stations** and allow location and notifications. It checks
+   every 5 minutes, or every minute near a station, while the watching notification
+   is active. Reopen the app after a restart to resume watching.
+2. When successive location checks show you approaching a station within ~150 m,
+   MetroNudge offers a trip to your home station.
+3. **Buy** on the notification opens your selected channel: BMRCL's WhatsApp bot
+   or the Namma Metro app. **Change** opens the trip card to choose another station.
+   The route is copied to your clipboard; you choose stations and pay in that channel.
+4. Share a ticket image to MetroNudge or use **Import ticket** to save it locally
+   and display it full-screen at the gate. Importing an image does not verify that
+   the ticket is valid; check the original ticket's date and conditions.
+5. Long-press your Android home screen → **Widgets → MetroNudge** to add the nearest
+   station, **Buy ticket**, and **Show ticket** shortcuts.
+
+MetroNudge does not automatically book, pay, or retrieve a ticket. The WhatsApp
+handoff opens the official chat with an unsent “Hi”; you complete the conversation.
 
 ## Privacy
 

@@ -40,6 +40,15 @@ class Store private constructor(private val context: Context) {
     }
     val resolver: StationResolver by lazy { StationResolver(pack) }
 
+    // Keep home-screen widgets in sync with whatever changed (status, ticket, home…).
+    private val widgetSync = SharedPreferences.OnSharedPreferenceChangeListener { _, _ ->
+        io.github.chiragjjjks.metronudge.platform.MetroWidget.refresh(context)
+    }
+
+    init {
+        prefs.registerOnSharedPreferenceChangeListener(widgetSync)
+    }
+
     var homeStationId: String?
         get() = prefs.getString(KEY_HOME, null)
         set(v) = prefs.edit { putString(KEY_HOME, v) }
@@ -47,6 +56,17 @@ class Store private constructor(private val context: Context) {
     var watching: Boolean
         get() = prefs.getBoolean(KEY_WATCHING, false)
         set(v) = prefs.edit { putBoolean(KEY_WATCHING, v) }
+
+    var channel: io.github.chiragjjjks.metronudge.platform.Channel
+        get() = prefs.getString(KEY_CHANNEL, null)
+            ?.let { runCatching { io.github.chiragjjjks.metronudge.platform.Channel.valueOf(it) }.getOrNull() }
+            ?: io.github.chiragjjjks.metronudge.platform.Channel.WHATSAPP
+        set(v) = prefs.edit { putString(KEY_CHANNEL, v.name) }
+
+    /** Source and destination ids of the last trip handed off, for labelling imported tickets. */
+    var lastTrip: List<String>?
+        get() = prefs.getString(KEY_LAST_TRIP, null)?.split(',')?.takeIf { it.size == 2 }
+        set(v) = prefs.edit { if (v == null) remove(KEY_LAST_TRIP) else putString(KEY_LAST_TRIP, v.joinToString(",")) }
 
     var recentDestinations: List<String>
         get() = prefs.getString(KEY_RECENTS, "")!!.split(',').filter { it.isNotBlank() }
@@ -155,6 +175,8 @@ class Store private constructor(private val context: Context) {
         private const val KEY_STATUS = "watch_status"
         private const val KEY_NUDGED = "last_nudged"
         private const val KEY_TICKET = "ticket"
+        private const val KEY_CHANNEL = "channel"
+        private const val KEY_LAST_TRIP = "last_trip"
 
         @Volatile private var instance: Store? = null
 

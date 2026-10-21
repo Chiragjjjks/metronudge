@@ -8,12 +8,11 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
 
-    <!-- Lets us find the Namma Metro app among launcher apps by its name. -->
+    <!-- Apps MetroNudge can hand a purchase to (official BMRCL channels). -->
     <queries>
-        <intent>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent>
+        <package android:name="com.aum.nammametro" />
+        <package android:name="com.whatsapp" />
+        <package android:name="com.whatsapp.w4b" />
     </queries>
 
     <application
@@ -48,5 +47,26 @@
         <receiver
             android:name=".platform.NotNowReceiver"
             android:exported="false" />
+
+        <!-- Invisible hop from a notification/widget "Buy" to WhatsApp / Namma Metro. -->
+        <activity
+            android:name=".platform.BuyActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:noHistory="true"
+            android:taskAffinity=""
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <receiver
+            android:name=".platform.MetroWidget"
+            android:exported="true"
+            android:label="MetroNudge">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_metro_info" />
+        </receiver>
     </application>
 </manifest>

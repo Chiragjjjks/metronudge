@@ -3,6 +3,7 @@ package io.github.chiragjjjks.metronudge.ui
 import android.text.format.DateUtils
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -32,6 +33,7 @@ import io.github.chiragjjjks.metronudge.core.CityPack
 import io.github.chiragjjjks.metronudge.core.Station
 import io.github.chiragjjjks.metronudge.data.Ticket
 import io.github.chiragjjjks.metronudge.data.WatchStatus
+import io.github.chiragjjjks.metronudge.platform.Channel
 import androidx.compose.material3.MaterialTheme.typography as T
 
 @Composable
@@ -41,7 +43,9 @@ fun HomeScreen(
     watching: Boolean,
     status: WatchStatus?,
     ticket: Ticket?,
-    nammaMetroInstalled: Boolean,
+    channel: Channel,
+    onChannel: (Channel) -> Unit,
+    channelInstalled: Boolean,
     onToggleWatching: (Boolean) -> Unit,
     onPickHome: () -> Unit,
     onOpenTicket: () -> Unit,
@@ -54,9 +58,9 @@ fun HomeScreen(
         Modifier
             .fillMaxSize()
             .background(c.background)
-            .verticalScroll(rememberScrollState())
             .statusBarsPadding()
             .navigationBarsPadding()
+            .verticalScroll(rememberScrollState())
             .screenPadding(),
         verticalArrangement = Arrangement.spacedBy(14.dp),
     ) {
@@ -159,15 +163,37 @@ fun HomeScreen(
             MnButton("Import ticket", onImportTicket, Modifier.weight(1f), kind = ButtonKind.Secondary)
         }
 
-        if (!nammaMetroInstalled) {
-            MnCard {
-                Text("Install Namma Metro", style = T.titleMedium)
+        // --- Where to buy -----------------------------------------------------
+        MnCard {
+            SectionLabel("Buy tickets with")
+            Spacer(Modifier.height(10.dp))
+            Segmented(Channel.entries, channel, { it.label }, onChannel)
+            Spacer(Modifier.height(10.dp))
+            Text(
+                when (channel) {
+                    Channel.WHATSAPP -> "Opens BMRCL's official WhatsApp bot (+91 81055 56677). Your stations are copied so you can paste them; you send the messages and pay."
+                    Channel.APP -> "Opens BMRCL's official Namma Metro app. Your stations are copied so you can paste them; you pay there as usual."
+                },
+                style = T.bodyMedium,
+                color = c.mutedForeground,
+            )
+            if (!channelInstalled) {
+                Spacer(Modifier.height(6.dp))
                 Text(
-                    "Tickets are bought in BMRCL's official app. MetroNudge opens it for you.",
+                    "${if (channel == Channel.WHATSAPP) "WhatsApp" else "Namma Metro"} isn't installed on this phone.",
                     style = T.bodyMedium,
-                    color = c.mutedForeground,
+                    color = c.warning,
                 )
             }
+        }
+
+        MnCard {
+            Text("Add the widget", style = T.titleMedium)
+            Text(
+                "Long-press your home screen → Widgets → MetroNudge. It shows the nearest station, a Buy button and today's ticket.",
+                style = T.bodyMedium,
+                color = c.mutedForeground,
+            )
         }
 
         MnButton("Send a test nudge", onTestNudge, Modifier.fillMaxWidth(), kind = ButtonKind.Ghost)
@@ -218,3 +244,27 @@ private fun checkedAgo(at: Long): String =
     else DateUtils.getRelativeTimeSpanString(at).toString()
 
 fun formatDistance(m: Int): String = if (m < 1000) "$m m" else "%.1f km".format(m / 1000.0)
+
+@Composable
+fun <T> Segmented(options: List<T>, selected: T, label: (T) -> String, onSelect: (T) -> Unit) {
+    val c = Mn.colors
+    Row(
+        Modifier.fillMaxWidth().clip(ButtonShape).background(c.muted).padding(4.dp),
+        horizontalArrangement = Arrangement.spacedBy(4.dp),
+    ) {
+        options.forEach { option ->
+            val on = option == selected
+            Box(
+                Modifier
+                    .weight(1f)
+                    .height(40.dp)
+                    .clip(RoundedCornerShape(9.dp))
+                    .background(if (on) c.card else androidx.compose.ui.graphics.Color.Transparent)
+                    .clickable { onSelect(option) },
+                contentAlignment = Alignment.Center,
+            ) {
+                Text(label(option), style = T.labelLarge, color = if (on) c.foreground else c.mutedForeground)
+            }
+        }
+    }
+}

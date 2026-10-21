@@ -27,6 +27,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import io.github.chiragjjjks.metronudge.core.CityPack
 import io.github.chiragjjjks.metronudge.core.Station
+import io.github.chiragjjjks.metronudge.platform.Channel
 import androidx.compose.material3.MaterialTheme.typography as T
 
 @Composable
@@ -35,6 +36,7 @@ fun TripScreen(
     source: Station?,
     destination: Station?,
     hasTicketToday: Boolean,
+    channel: Channel,
     onChangeSource: () -> Unit,
     onChangeDestination: () -> Unit,
     onBuy: () -> Unit,
@@ -64,12 +66,15 @@ fun TripScreen(
             MnButton("Show today's ticket", onShowTicket, Modifier.fillMaxWidth(), kind = ButtonKind.Secondary)
         }
         Text(
-            "Opens the official Namma Metro app. The destination name is copied, so you can paste it into the search. You pay there with UPI as usual.",
+            when (channel) {
+                Channel.WHATSAPP -> "Opens BMRCL's official WhatsApp bot. \"From to To\" is copied so you can paste it when the bot asks. You pay with UPI as usual."
+                Channel.APP -> "Opens the official Namma Metro app. \"From to To\" is copied so you can paste it into the search. You pay with UPI as usual."
+            },
             style = T.bodyMedium,
             color = c.mutedForeground,
         )
         MnButton(
-            "Buy in Namma Metro",
+            if (channel == Channel.WHATSAPP) "Buy on WhatsApp" else "Buy in Namma Metro",
             onBuy,
             Modifier.fillMaxWidth(),
             large = true,

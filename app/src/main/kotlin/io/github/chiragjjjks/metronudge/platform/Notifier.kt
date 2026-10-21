@@ -42,24 +42,26 @@ object Notifier {
             .putExtra(EXTRA_SOURCE, trip.source.id)
             .putExtra(EXTRA_DESTINATION, trip.destination?.id)
 
-    /** "Near RV Road → Rajajinagar. Buy your ticket?" with Buy / Not now. */
+    fun buyIntent(context: Context, sourceId: String?, destinationId: String?): Intent =
+        Intent(context, BuyActivity::class.java)
+            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_NO_ANIMATION)
+            .putExtra(EXTRA_SOURCE, sourceId)
+            .putExtra(EXTRA_DESTINATION, destinationId)
+
+    /**
+     * "RV Road → Rajajinagar · 97 m. Buy your ticket?" with
+     * [Buy → Rajajinagar] [Change] [Not now].
+     */
     fun showNudge(context: Context, trip: Trip, distanceMeters: Int) {
-        val open = PendingIntent.getActivity(
-            context, 10, tripIntent(context, trip),
-            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
-        )
-        val notNow = PendingIntent.getBroadcast(
-            context, 11,
-            Intent(context, NotNowReceiver::class.java),
-            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
-        )
-        val title = trip.destination?.let { "${shortName(trip.source)} → ${shortName(it)}" } ?: "Near ${shortName(trip.source)}"
-        val text = if (trip.destination != null) {
-            "You're ${distanceMeters} m from the station. Buy your ticket now?"
-        } else {
-            "You're ${distanceMeters} m from the station. Where to?"
-        }
-        val n = Notification.Builder(context, CHANNEL_NUDGE)
+        val flags = PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        val openTrip = PendingIntent.getActivity(context, 10, tripIntent(context, trip), flags)
+        val notNow = PendingIntent.getBroadcast(context, 11, Intent(context, NotNowReceiver::class.java), flags)
+        val dst = trip.destination
+        val title = dst?.let { "${shortName(trip.source)} → ${shortName(it)}" } ?: "Near ${shortName(trip.source)}"
+        val text = if (dst != null) "You're $distanceMeters m from the station. Buy your ticket?"
+        else "You're $distanceMeters m from the station. Where to?"
+
+        val b = Notification.Builder(context, CHANNEL_NUDGE)
             .setSmallIcon(R.drawable.ic_stat_metro)
             .setContentTitle("🚇 $title")
             .setContentText(text)
@@ -67,12 +69,17 @@ object Notifier {
             .setCategory(Notification.CATEGORY_REMINDER)
             .setGroup("nudge")
             .setColor(0xFF8E3A96.toInt())
-            .setContentIntent(open)
+            .setContentIntent(openTrip)
             .setAutoCancel(true)
-            .addAction(Notification.Action.Builder(null, "Buy ticket", open).build())
-            .addAction(Notification.Action.Builder(null, "Not now", notNow).build())
-            .build()
-        context.getSystemService(NotificationManager::class.java).notify(ID_NUDGE, n)
+        if (dst != null) {
+            val buy = PendingIntent.getActivity(context, 12, buyIntent(context, trip.source.id, dst.id), flags)
+            b.addAction(Notification.Action.Builder(null, "Buy → ${shortName(dst)}", buy).build())
+            b.addAction(Notification.Action.Builder(null, "Change", openTrip).build())
+        } else {
+            b.addAction(Notification.Action.Builder(null, "Choose destination", openTrip).build())
+        }
+        b.addAction(Notification.Action.Builder(null, "Not now", notNow).build())
+        context.getSystemService(NotificationManager::class.java).notify(ID_NUDGE, b.build())
     }
 
     fun cancelNudge(context: Context) =
