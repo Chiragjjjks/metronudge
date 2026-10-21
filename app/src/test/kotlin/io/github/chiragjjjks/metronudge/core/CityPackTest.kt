@@ -1,4 +1,4 @@
-package io.github.owner.metronudge.core
+package io.github.chiragjjjks.metronudge.core
 
 import org.json.JSONObject
 import org.junit.Assert.assertEquals

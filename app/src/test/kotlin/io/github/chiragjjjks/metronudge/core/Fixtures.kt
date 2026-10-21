@@ -1,4 +1,4 @@
-package io.github.owner.metronudge.core
+package io.github.chiragjjjks.metronudge.core
 
 import org.json.JSONArray
 import org.json.JSONObject

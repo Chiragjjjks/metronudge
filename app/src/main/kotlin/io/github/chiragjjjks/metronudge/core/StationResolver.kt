@@ -1,4 +1,4 @@
-package io.github.owner.metronudge.core
+package io.github.chiragjjjks.metronudge.core
 
 /**
  * A point the OS should geofence: a station entrance, or the station centroid
