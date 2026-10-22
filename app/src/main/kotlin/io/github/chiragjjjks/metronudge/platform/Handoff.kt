@@ -5,6 +5,7 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import androidx.core.net.toUri
 
 /** Where the ticket is bought. Both are official BMRCL channels. */
@@ -21,6 +22,15 @@ enum class Channel(val label: String) {
 object Handoff {
     /** BMRCL's official WhatsApp ticketing number (+91 81055 56677). */
     const val WHATSAPP_NUMBER = "918105556677"
+
+    /**
+     * Pre-typed first message. It is the same text the bot's "QR tickets"
+     * reply button sends, so the chat opens straight on ticket booking
+     * instead of the greeting menu. WhatsApp only allows pre-typing one
+     * unsent message; you press Send and pay in the chat yourself.
+     */
+    const val WHATSAPP_START_TEXT = "QR tickets"
+
     const val NAMMA_METRO_PACKAGE = "com.aum.nammametro"
 
     fun findNammaMetro(context: Context): Intent? =
@@ -39,8 +49,10 @@ object Handoff {
                 .setPrimaryClip(ClipData.newPlainText("Metro trip", route))
         }
         when (channel) {
-            // "Hi" starts BMRCL's bot; it then asks for stations and payment.
-            Channel.WHATSAPP -> open(context, "https://wa.me/$WHATSAPP_NUMBER?text=Hi".toUri().let { Intent(Intent.ACTION_VIEW, it) })
+            Channel.WHATSAPP -> open(
+                context,
+                Intent(Intent.ACTION_VIEW, "https://wa.me/$WHATSAPP_NUMBER?text=${Uri.encode(WHATSAPP_START_TEXT)}".toUri()),
+            )
             Channel.APP -> open(
                 context,
                 findNammaMetro(context) ?: Intent(Intent.ACTION_VIEW, "market://details?id=$NAMMA_METRO_PACKAGE".toUri()),
